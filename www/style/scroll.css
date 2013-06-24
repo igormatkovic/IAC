@@ -1,0 +1,41 @@
+/* Tiny Scrollbar */
+#scrollbar1 { width: 520px; margin: 20px 0 10px; }
+#scrollbar1 .viewport { width: 500px; height: 200px; overflow: hidden; position: relative; }
+#scrollbar1 .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0;  }
+#scrollbar1 .scrollbar{ background: transparent url(../images/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 15px; }
+#scrollbar1 .track { background: transparent url(../images/bg-scrollbar-trackend-y.png) no-repeat 0 100%; height: 100%; width:13px; position: relative; padding: 0 1px; }
+#scrollbar1 .thumb { background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px; }
+#scrollbar1 .thumb .end { background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat 50% 0; overflow: hidden; height: 5px; width: 25px; }
+#scrollbar1 .disable { display: none; }
+.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
+
+
+
+#scrollbar2 { width: 360px; margin: auto; z-index: 1000; }
+#scrollbar2 .viewport { width: 360px; height: 125px; overflow: hidden; position: relative; }
+#scrollbar2 .overview { list-style: none; width: 1416px; padding: 0; margin: 0;padding-left: 20px;padding-right: 20px; position: absolute; left: 0; top: 0; border: 1px solid #dc143c;color: #a1a1a1; }
+#scrollbar2 .overview img{ float: left; }
+#scrollbar2 .scrollbar{ background: transparent url(../images/bg-scrollbar-track-x.png) no-repeat 0 0; position: relative; margin: 0 0 5px; clear: both; height: 15px; }
+#scrollbar2 .track { background: transparent url(../images/bg-scrollbar-trackend-x.png) no-repeat 100% 0; width: 100%; height:15px; position: relative; }
+#scrollbar2 .thumb { background: transparent url(../images/bg-scrollbar-thumb-x.png) no-repeat 100% 50%; height: 25px; cursor: pointer; overflow: hidden; position: absolute; left: 0; top: -5px; }
+#scrollbar2 .thumb .end{ background: transparent url(../images/bg-scrollbar-thumb-x.png) no-repeat 0 50%; overflow: hidden; height: 25px; width: 5px;}
+#scrollbar2 .disable { display: none; }
+.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
+
+.leftarrow{
+    position: relative;
+    top: 120px;
+    left: 0;
+    width: 20px;
+
+    z-index: 100;
+
+}
+
+.rightarrow{
+    position: relative;
+    top: 90px;
+    left: 340px;
+    width: 20px;
+    z-index: 100;
+}

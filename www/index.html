@@ -1,42 +1,546 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    http://www.apache.org/licenses/LICENSE-2.0
+<title>iAcquaint</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="cleartype" content="on">
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/icons/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icons/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icons/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-precomposed.png">
+        <link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
+        
+        
+
+    <link rel="stylesheet" type="text/css" href="style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="style/root.css?v=8"/>
+    <link rel="stylesheet" type="text/css" href="style/scroll.css"/>
+    <link rel="stylesheet" href="style/horizontal.css" type="text/css">
+
+    <link rel="stylesheet" href="csstwo/horizontal.css" type="text/css">
+
+   
+    <!-- ie fix -->
+    <!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="style/ie6-style.css"/>    <![endif]-->
+    <!-- png img fix -->
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" type="text/css" href="style/fix-png.css"/>    <![endif]-->
+
+
+
+
+    <!--<script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"></script>-->
+
+    <!--<script type="text/javascript">-->
+    <!--$(document).ready(function(){-->
+
+    <!--$('#scrollbar2').tinyscrollbar({-->
+    <!--axis: 'x',-->
+    <!--scroll:true-->
+    <!--});-->
+    <!--});-->
+    <!--</script>-->
+
+<script type="text/javascript" src="phonegap.js"></script>
+<script type="text/javascript" src="js/default.js?v=21"></script>
+<script type="text/javascript" src="js/jquery.min.js?v=1"></script>
+<link rel="stylesheet" href="style/jquery-ui.css?v=1">
+ 
+
+<link href="style/jplayer.blue.monday.css?v=1" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.jplayer.min.js?v=1"></script>    
+
+
+<script type="text/javascript" src="js/toogle.js?v=1"></script>
+
+<script type="text/javascript" src="js/jva.js?v=1"></script>
+
+<script type="text/javascript" src="js/sly.min.js?v=1"></script>
+
+<script src="js/jquery-ui.js?v=1"></script>
+
+
+<script type="text/javascript" src="js/script.js?v=4"></script>
+<script src="js/plugins.js?v=1"></script>
+
+
+
+<style>
+.body{width:90%}
+.img_login_logo{width:220px}
+
+</style>
+    
+</head>
+<body>
+
+
+<!-- Start of first page -->
+<div class="onepage" id="login">
+
+
+   <!-- Container -->
+    <div class="container containerlogin">
+    
+    <!-- Content -->
+        <div class="content">
+            
+            <!-- Static page -->
+            <div class="page">
+
+                <div class="photoviewlogin">
+                    <img src="img/login_logo.png" alt="photo" class="image img_login_logo"/>
+                </div>
+
+
+                <!-- Contact form -->
+                <div id="contact">
+                  <form id="form2" name="form2" method="post" action="">
+
+                    <input name="email" type="email" placeholder="email" class="simpleinput"  />
+                    <p class="titlelabel"></p>
+                    <input name="password" type="password" placeholder="password" class="simpleinput" />
+
+                    <p><input name="login" type="submit" class="simplebutton-forforms" value="Login" /></p>
+                  </form>
+                </div>
+                
+
+                <div class="error"></div>
+                <br />
+
+                <!-- Social -->
+                <div class="forgottpass">
+
+                </div>
+                <div class="createacc">
+
+                  <br /><br />
+        
+                </div>
+                
+            
+          </div>
+            
+            
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+        
+        
+        <!-- Footer -->
+
+    </div>
+
+</div><!-- /page -->
+
+
+
+
+
+    <div id="wrap">
+        <!-- Container -->
+        <div class="container">
+
+
+            <!-- Header -->
+            <div class="header">
+
+                <!-- back button not active, because we are in index -->
+                <!--
+                <div class="back-button"> <a href="javascript:void(0);" onClick="javascript:showPage(previousPage, previousTab);">Back</a>  </div>
+                -->
+
+                <!--<div id="ios-arrow-left" title="Albums"></div>-->
+                <!-- your logo size : 130x40 -->
+                <div class="logo"><a href="javascript:void(0);" onClick="javascript:showPage('myiacquaint');"><img src="img/logos/myiaquaint_logo.png"  height="20" alt="logo"/></a></div>
+
+
+                <div class="clear"></div>
+            </div>
+
+
+
+            <!-- Start of second page -->
+            <div class="onepage" id="myiacquaint">
+
+                <!-- Content -->
+                <div class="content">
+                    <div class="contentaround">
+                        <div class="tabs tabstwo">
+                            <ul>
+                                <li><a href="#tab1" class="tabactive"><img src="img/my_iaq.png" width="37" height="37" ><span> My Aquaint</span> </a></li>
+                                <li><a href="#tab2" class="noborder"><img src="img/green_plus.png" width="34" height="35" ><span>Get Started</span></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="tab active tab1">
+                            <div class="userpointinfo">
+
+                                <div class="userpointimage">
+                                    <div class="userimage" class="br2"> <img src="img/user.png" class="br2"> </div>
+                                    <div class="useripoints" class="br2">POINTS <span class="num_of_points"></span></div>
+                                </div>
+                                    
+                                   
+                                <div class="wrap" style="margin-left:5px;">
+                                    <h2 class="user_name">UserName</h2><br class="cl"/>
+
+                                    <button class="btn prev" style="width: 15px;float: left; display:none"><img src="images/APP-iacquaint-myiaquaint.png" width="13px"></button>
+                                    <div class="frame" id="centered2">
+                                        <ul class="clearfix">
+                                            <li>
+                                                <div class="singleslideimg beginner smaller_background">
+                                                </div>
+                                                <div class="stage">beginner</div>
+                                            </li>
+                                            <li>
+                                                <div class="singleslideimg enthusiastnolock smaller_background">
+                                                </div>
+                                                <div class="stage">enthusiast</div>
+                                            </li>
+                                            <li>
+                                                <div class="singleslideimg expertnolock smaller_background">
+                                                </div>
+                                                <div class="stage">expert</div>
+                                            </li>
+                                            <li>
+                                                <div class="singleslideimg master smaller_background">
+                                                </div>
+                                                <div class="stage">master</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <button class="btn next" style="width: 15px;float: left; display:none"><img src="images/rightpointer.png" width="13px"></button>
+
+                                    <div id="progressbar" class="progressbar"></div>
+                                    <div class="expertise">300 points to <span> "expert"</span></div>
+                                </div>
+                            </div>
+
+
+                                <div class="hard br3 hard_left">
+                                    <div class="top">
+                                        <div class="lefticon"><img src="img/disc.png"></div>
+                                        <div class="rightinfo">
+                                            <div class="num_of_plans">0</div>
+                                            <span>Saved Plans</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="down">
+                                        <a href="#tab3" class="viewall">View All</a>
+                                    </div>
+
+                                </div>
+                                <div class="hard br3 hard_right">
+                                    <div class="top">
+                                        <div class="lefticon"><img src="img/star.png"></div>
+                                        <div class="rightinfo">
+                                            <div class="num_of_favorites">0</div>
+                                            <span>Favorites</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="down">
+                                        <a href="#tab4" class="viewall">View All</a>
+                                    </div>
+                                </div>
+                                <div class="hard br3 hard_left">
+                                    <div class="top">
+                                        <div class="lefticon"><img src="img/phone.png"></div>
+                                        <div class="rightinfo">
+                                            <div class="num_of_my_mobile">0</div>
+                                            <span>My mobile</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="down">
+                                        <a href="#tab5" class="viewall">View All</a>
+                                    </div>
+                                </div>
+                                <div class="hard br3 hard_right">
+                                    <div class="top">
+                                        <div class="lefticon"><img src="img/buble.png"></div>
+                                        <div class="rightinfo">
+                                            <div class="num_of_questions">0</div>
+                                            <span>Questions</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="down">
+                                        <a href="#tab6" class="viewall">View All</a>
+                                    </div>
+                                </div>
+
+                        </div>
+
+
+
+                        <div class="tab tab2"> 
+                            <!--
+                            <div class="getstartedrow">
+                                <img src="img/takeatour.png" alt="">
+                                <div class="getstarttext">
+                                    Take a website tour</div>
+                                <a href="#tab8" class="starbtn tablink"><img src="img/getstartbtn.png" alt=""></a>
+                            </div>
+                            -->
+                            <div class="getstartedrow">
+                                <img src="img/explore.png" alt="">
+                                <div class="getstarttext">
+                                    Explore iAcquaint</div>
+                                <a href="#tab9" class="starbtn tablink"><img src="img/getstartbtn.png" alt=""></a>
+                            </div>
+                        </div>
+
+
+                        <!-- view all saved plans -->
+                        <div class="tab tab3"></div>
+
+                        <!-- view all favorites -->
+                        <div class="tab tab4"></div>
+
+                        <!-- view all my mobile -->
+                        <div class="tab tab5"></div>
+
+                        <!-- view all questions -->
+                        <div class="tab tab6"></div>
+
+                        <!-- view single resource -->
+                        <div class="tab tab7">
+                            <div class="resource_title"></div>
+                            <div class="resource_content"></div>
+                        </div>
+
+
+                        <!-- view get started/website tour -->
+                        <div class="tab tab8"></div>
+
+                        <!-- view get started/explore iacquaint -->
+                        <div class="tab tab9"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div><!-- /page -->
+
+
+            <div class="onepage" id="learn">
+
+                <div class="content">
+                    <div class="contentaround">
+                        <div class="tabs tabstwo tabblue">
+                            <ul>
+                                <li><a href="#tab1"><img src="img/byneed.png" width="40" height="40" ><span> By Need</span> </a></li>
+                                <li><a href="#tab2" class="noborder"><img src="img/byevent.png" width="49" height="40" ><span>By Event</span></a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tab active tab1"></div>
+                        <div class="tab tab2"></div>
+                        <div class="tab tab3"></div>
+
+                    </div>
+                </div>
+
+            </div><!-- /page -->
+
+
+            <div class="onepage" id="ask">
+
+                <div class="content">
+                    <div class="contentaround">
+                        <div class="tabs">
+                            <ul>
+                                <!--
+                                <li><a href="#tab1"><img src="img/pen.png" width="26" height="29"  ><span>articles</span></a></li>
+                                <li><a href="#tab2"><img src="img/proces.png" width="27" height="29" ><span>weblinks</span></a></li>
+                                <li><a href="#tab3"><img src="img/calculator.png" width="26" height="29" ><span>Calculator</span></a></li>
+                                -->
+                                <li style="width:100%;"><a href="#tab1" class="noborder"><img src="img/qa.png" width="27" height="29" ><span>Q&A</span></a></li>
+
+                            </ul>
+                        </div>
+                        
+                        <div id="searchbox">
+                            <form name="form5" onsubmit="javascript:searchFaq();return false;">
+                                <input name="search_term" type="text" class="txtbox" placeholder="enter your question here" id="textfield" />
+                                <input name="button" type="submit" class="button" id="button" value="" />
+                                <div class="clear"></div>
+                            </form>
+                        </div>
+
+                        <div class="tab tab1"></div>
+
+                        <div class="tab tab2"></div>
+  
+
+                    </div>
+                </div>
+
+            </div><!-- /page -->
+
+
+            <div class="onepage" id="browse">
+                <div class="content">
+                    <div class="contentaround">
+                        <div class="tabs tabsthree ">
+                            <ul>
+                                <li><a href="#tab1"><img src="img/topic.png" width="40" height="40" ><span> By Topic</span></a></li>
+                                <li><a href="#tab2"><img src="img/type.png" width="40" height="40" ><span> Type</span></a></li>
+                                <li><a href="#tab5" class="noborder" onClick="javascript:browse('feelingLucky','all');"><img src="img/lucky.png" width="40" height="40" ><span>Feeling Lucky</span></a></li>
+                            </ul>
+                        </div>
+
+                        <!-- show topics -->
+                        <div class="tab active tab1"></div>
+                        <!-- show types -->
+                        <div class="tab tab2"></div>
+
+                        <!-- list by selected topic -->
+                        <div class="tab tab3">
+                            <div class="tools_content"></div>
+                            <div class="more"><p>Load More</p></div>
+                        </div>
+
+                        <!-- list by selected type -->
+                        <div class="tab tab4">
+                            <div class="tools_content"></div>
+                            <div class="more"><p>Load More</p></div>
+                        </div>
+
+                        <!-- feeling lucky - single article -->
+                        <div class="tab tab5">
+                            <div class="resource_title"></div>
+                            <div class="resource_content"></div>
+                        </div>
+
+                        <!-- show single article -->
+                        <div class="tab tab6">
+                            <div class="resource_title"></div>
+                            <div class="resource_content"></div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div><!-- /page -->
+
+
+            <div class="onepage" id="watch">
+
+                <div class="content">
+                    <div class="contentaround">
+                        <div class="videomain">
+
+                            <div class="vidly_wrapper"></div>
+
+                            <div class="jplayer_wrapper" style="display:none;">
+
+               
+
+                                <div id="jquery_jplayer" class="jp-jplayer"></div>
+                                <div id="jp_container_1" class="jp-audio jp-video-360p">
+                                    <div class="jp-type-single">
+                                        <div class="jp-gui jp-interface">
+                                            <ul class="jp-controls">
+                
+                                                <!-- comment out any of the following <li>s to remove these buttons -->
+                                                
+                                                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                                                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                                                <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+                                                <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+                                                <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+                                                <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+                                            </ul>
+                                            
+                                            <!-- you can comment out any of the following <div>s too -->
+                                            
+                                            <div class="jp-progress">
+                                                <div class="jp-seek-bar">
+                                                    <div class="jp-play-bar"></div>
+                                                </div>
+                                            </div>
+                                            <div class="jp-volume-bar">
+                                                <div class="jp-volume-bar-value"></div>
+                                            </div>
+                                            <div class="jp-current-time"></div>
+                                            <div class="jp-duration"></div>                  
+                                        </div>
+                                       
+                                       
+                                    </div>
+                                </div> 
+                            </div>
+
+                        </div>
+                        <div class="tabs tabsthree watch" >
+                            <ul>
+                                <li><a href="#tab1">Animated</a></li>
+                                <li><a href="#tab2"><span>Video</span></a></li>
+                                <li><a href="#tab3" class="noborder"><span>Podcast</span></a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tab tab1" style="text-align: center;"></div>
+                        <div class="tab tab2" style="text-align: center;"></div>
+                        <div class="tab tab3" style="text-align: center;"></div>
+
+                    </div>
+                </div>
+            </div><!-- /page -->
+
+
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer
+    <div class="footer" id="footer">
+        <ul class="bottombar">
+            <li><a href="javascript:void(0);" onClick="javascript:showPage('learn');" class="learnfot"><div class="gray"></div><span>Learn</span></a></li>
+            <li><a href="javascript:void(0);" onClick="javascript:showPage('ask');" class="askfot"><div class="gray"></div><span>Ask</span></a></li>
+            <li><a href="javascript:void(0);" onClick="javascript:showPage('myiacquaint');" class="iaqfot"><div class="gray"></div><span>My iAquitant</span></a></li>
+            <li><a href="javascript:void(0);" onClick="javascript:showPage('browse');" class="browsefot"><div class="gray"></div><span>Browse</span></a></li>
+            <li><a href="javascript:void(0);" onClick="javascript:showPage('watch');" class="watchfot"><div class="gray"></div><span>Watch</span></a></li>
+        </ul>
+    </div>
+    
+     -->
+    
+    
+
+    <!-- Footer -->
+    <div class="footer" id="footer">
+        <ul class="bottombar en">
+            <li class="footer_learn" onClick="javascript:showPage('learn');"><span>Learn</span></li>
+            <li class="footer_ask" onClick="javascript:showPage('ask');"><span>Ask</span></li>
+            <li class="footer_myiaq" onClick="javascript:showPage('myiacquaint');"><span>My iAquitant</span></li>
+            <li class="footer_browse" onClick="javascript:showPage('browse');"><span>Browse</span></li>
+            <li class="footer_watch" onClick="javascript:showPage('watch');"><span>Watch</span></li>
+        </ul>
+    </div>
+    
+    
+    
+    
+
+
+
+    
+
+    
+</body>
 </html>
