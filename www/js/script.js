@@ -1,8 +1,5 @@
 var baseUrl = 'http://acquaintdev.com/';
 
-if(window.location.href.indexOf("acquaintdev") == -1) {
-	var baseUrl = 'http://localhost/iacquaint/';
-}
 
 var userKey = '';
 var userLang = 'en';
@@ -69,8 +66,9 @@ $(document).ready(function(){
     	var password = $('input[name=password]').val();
 
     	$.ajax({
-            type: "POST",
+            type: 'POST',
             url: baseUrl+'api/user/login/',
+            crossDomain: true,
             data: 'email='+email+'&password='+password,
             statusCode: {
 				401: function() {
@@ -305,6 +303,14 @@ function showPage(page,tab){
 		            	$('.user_name').html(data.name);
 	
 		            	$('.expertise').html(data.points_until_next_level);
+
+		            	if(data.image != ''){
+		        			var userImage = baseUrl+'uploads/members/'+data.image;
+		        		}else{
+		        			var userImage = 'img/user.png';
+		        		}
+
+		        		$('#myiacquaint .userimage img').attr('src', userImage);
 	
 		            	$('.num_of_plans').html(data.custom_plans.length + data.started_plans.length);
 		            	$('.num_of_favorites').html(data.favorites.length);
@@ -485,14 +491,16 @@ function showPage(page,tab){
 		            	// data.video_categories.animated
 		            	// data.video_categories_new
 		            	// data.current_video
-	
-						if(userLangId==2){
-							$('.vidly_wrapper').html(data.animated[0][0]['video_code']);
-							console.log(data.animated[0][0]);
-						}else{
-							$('.vidly_wrapper').html(data.animated[0][0]['video_code_fr']);
-						}
-	
+		            	if(userLangId==2) var videoUrl = data.animated[0][0]['video_code']; else var videoUrl = data.animated[0][0]['video_code_fr'];
+		            	
+		            	console.log(videoUrl);
+		            	var vidly_video = vidly_url(videoUrl);
+		            	
+		            	console.log(vidly_video);
+		            	
+		            	$('.vidly_wrapper').html(vidly_video);
+
+
 	
 	                    var videos='';  
 	                	for(i=0;i<data.animated.length;i++){ 
@@ -848,7 +856,7 @@ function showModule(id,type){
 	                    if(data.tools[i]['type']=='calculator'){
 	                    	if(data.tools[i]['calculator_type']=='internal'){
 	                    		var file = data.tools[i]['filename_en'].substring(0, data.tools[i]['filename_en'].length - 4);
-	                    		tools += '<iframe width="100%" height="100%" src="'+baseUrl+userLang+'/learn/calc_api/'+file+'"></iframe>';
+	                    		tools += '<iframe width="310px" height="100%" src="'+baseUrl+userLang+'/learn/calc_api/'+file+'"></iframe>';
 	                    	}else{
 	                    		tools += '<strong><a href="'+data.tools[i]['link_'+userLang]+'" title="link">Click here for more info</a></strong>';
 	                    	}
@@ -858,7 +866,7 @@ function showModule(id,type){
 		                    	videoNum++;
 		                    	videoFiles.push(data.tools[i]['video_file_'+userLang]);
 	
-		                    	tools += '<iframe width="100%" height="300px" src="'+baseUrl+'en/learn/jplayer_api/'+data.tools[i]['video_file_'+userLang]+'"></iframe>';
+		                    	tools += '<iframe width="310px" height="300px" src="'+baseUrl+'en/learn/jplayer_api/'+data.tools[i]['video_file_'+userLang]+'"></iframe>';
 	
 	
 	                    	}else{
@@ -1138,7 +1146,7 @@ function toolDescription(tool){
 	if(tool['type']=='calculator'){
     	if(tool['calculator_type']=='internal'){
     		var file = tool['filename_en'].substring(0, tool['filename_en'].length - 4);
-    		desc += '<iframe width="100%" height="100%" src="'+baseUrl+userLang+'/learn/calc_api/'+file+'"></iframe>';
+    		desc += '<iframe width="310px"  height="100%" src="'+baseUrl+userLang+'/learn/calc_api/'+file+'"></iframe>';
     	}else{
     		desc += '<strong><a href="'+tool['link_'+userLang]+'" title="link">Click here for more info</a></strong>';
     	}
@@ -1373,13 +1381,21 @@ function searchFaq(){
 	
 	            var text='';
 	        	for(i=0;i<data.result.length;i++){ 
+
+	        		if(data.result[i]['user_data'][0]!=undefined){
+	        			var userImage = baseUrl+'uploads/members/'+data.result[i]['user_data'][0]['image'];
+	        		}else{
+	        			var userImage = 'img/smsimage.png';
+	        		}
+
 	        		text +='<div class="message">'+
-	        					'<div class="messageimg"><img src="img/smsimage.png" alt="sms" width="78"></div>'+
+	        					'<div class="messageimg"><img src="'+userImage+'" alt="sms" width="78"></div>'+
 	                        	'<a href="javascript:void(0);" onClick="javascript:singleFaq('+i+')">'+
 	                            	'<div class="bubble me messagetext">'+data.result[i]['question']+'</div>'+
 	                        	'</a>'+
 	                        '</div>';
 	        	}
+
 	            $('#ask .tab1').html(text);   
 	
 	            $('#ask .tab1').show();         
@@ -1408,18 +1424,17 @@ function singleFaq(i){
 
 
 function parse_vidly_id(iframe_string) {
-	
+  
+  var regex = /src=(["\'])(.*?)\1/g;
+  var src = regex.exec(iframe_string);
 
- 
-    var regex = /src=(["\'])(.*?)\1/g;
-    var src = regex.exec(iframe_string);
-    
- 
-    var regex2 = /link=(.*?)&/g;
-    var id = regex2.exec(src);
+  
+  var regex2 = /link=(.*?)&/g;
+  var id = regex2.exec(src);
 
- 
-    return id[1];    
+  
+  return id[1];
+  
 }
 
 
@@ -1441,7 +1456,7 @@ function vidly_url(frame, clas, width, height) {
 	   
 	var id = parse_vidly_id(frame);
 	
-	vidly_id(id, clas, width, height);
+	return vidly_id(id, clas, width, height);
 }
 
 function vidly_id(id, clas, width, height) {
