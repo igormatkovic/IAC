@@ -30,7 +30,7 @@ function check_login() {
 	var user_lang_id = localStorage.getItem('lang_id');
 	
 	if(user_key && user_key.length > 5) {
-		console.log(user_key);
+		// console.log(user_key);
 		userKey = user_key;
 		userLangId = user_lang_id;
 		userLang = 'en';
@@ -77,7 +77,7 @@ $(document).ready(function(){
 			},
             success: function (data) {
             	
-            	//console.log(data);
+            	//// console.log(data);
 
                 if(data.status==0){
                 	$('.error').html(data.message);
@@ -293,7 +293,7 @@ function showPage(page,tab){
 	            	if(data.status == 0) {
 			        	showPage('login');
 		        	} else{
-		            	//console.log(data);
+		            	//// console.log(data);
 		            	var progressPercent = 100 * data.points / 1000;
 		            	$( "#progressbar" ).progressbar({
 					        value: progressPercent
@@ -493,10 +493,10 @@ function showPage(page,tab){
 		            	// data.current_video
 		            	if(userLangId==2) var videoUrl = data.animated[0][0]['video_code']; else var videoUrl = data.animated[0][0]['video_code_fr'];
 		            	
-		            	console.log(videoUrl);
+		            	// console.log(videoUrl);
 		            	var vidly_video = vidly_url(videoUrl);
 		            	
-		            	console.log(vidly_video);
+		            	// console.log(vidly_video);
 		            	
 		            	$('.vidly_wrapper').html(vidly_video);
 
@@ -609,7 +609,7 @@ function showPage(page,tab){
 	
 						if(userLangId==2){
 							$('.vidly_wrapper').html(data.animated[0][0]['video_code']);
-							console.log(data.animated[0][0]);
+							// console.log(data.animated[0][0]);
 						}else{
 							$('.vidly_wrapper').html(data.animated[0][0]['video_code_fr']);
 						}
@@ -1040,7 +1040,7 @@ function tools(cat,type,by,offset){
 			        
 		            var list='';
 		            // data.results.total_rows
-		           // console.log(data.results.tools.length);
+		           // // console.log(data.results.tools.length);
 		
 		        	for(i=0;i<data.results.tools.length;i++){ 
 		        		if(data.results.tools[i]['favorite']=='no'){
@@ -1375,7 +1375,7 @@ function searchFaq(){
         	if(data.status == 0) {
 			       	showPage('login');
 			} else	{
-	        //	console.log(data);
+	        //	// console.log(data);
 	        //	data.total_rows
 	        	search_results = data.result;
 	

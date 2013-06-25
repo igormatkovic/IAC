@@ -1784,6 +1784,15 @@
 	    text-align: justify;
 	    padding-left: 3px;
 	    padding-right: 3px;
+	    font-size: 13px;
+	}
+	
+	.resource_content p{
+	    padding:4px 0;
+	}
+	
+	.resource_content p stron{
+	    padding:8px 0 5px 0;
 	}
 	
 	
