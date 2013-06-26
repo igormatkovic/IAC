@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "U9Y46VQT65.com.cod3.iacquaintdev"
-        version   = "1.0.5">
+        version   = "1.0.7">
 
     <name>iAcquaint</name>
 
