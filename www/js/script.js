@@ -13,6 +13,92 @@ var currentTab = 1;
 var previousPage = 'myiacquaint';
 var previousTab = 1;
 
+
+var previous_arr = new Array();
+var current_arr = new Array();
+current_arr['func'] = 'showPage';
+current_arr['f1'] 	= 'login';
+
+
+
+
+function set_previous() {
+
+	previous_arr['func'] = current_arr['func'];
+	
+	if (typeof(current_arr['f1']) !=='undefined') {
+        previous_arr['f1'] = current_arr['f1'];
+    } else {
+	    previous_arr['f1'] = 'undefined';
+    }
+    
+	if (typeof(current_arr['f2']) !=='undefined') {
+        previous_arr['f2'] = current_arr['f2'];
+    } else {
+	    previous_arr['f2'] = 'undefined';
+    }
+    
+	if (typeof(current_arr['f3']) !=='undefined') {
+        previous_arr['f3'] = current_arr['f3'];
+    } else {
+	    previous_arr['f3'] = 'undefined';
+    }
+    
+	if (typeof(current_arr['f4']) !=='undefined') {
+        previous_arr['f4'] = current_arr['f4'];
+    } else {
+	    previous_arr['f4'] = 'undefined';
+    }
+	
+	
+}
+
+
+
+function set_current(func, f1, f2, f3, f4) {
+	// 
+	
+	set_previous();
+	
+	current_arr['func'] = func;
+	
+	if (typeof(f1) !=='undefined') {
+        current_arr['f1'] = f1;
+    } else {
+	    current_arr['f1'] = 'undefined';
+    }
+    
+	if (typeof(f2) !=='undefined') {
+        current_arr['f2'] = f2;
+    } else {
+	    current_arr['f2'] == 'undefined';
+    }
+    
+	if (typeof(f3) !=='undefined') {
+        current_arr['f3'] = f3;
+    } else {
+	    current_arr['f3'] == 'undefined';
+    }
+    
+	console.log('Previous:');
+	console.log(previous_arr);
+	console.log('Current:');
+	console.log(current_arr);
+    
+    
+
+}
+
+
+function go_previous() {
+	showPage(previousPage,previousTab, true);
+	
+	console.log(previous_arr);
+	window[previous_arr['func']](previous_arr['f1'], previous_arr['f2'], previous_arr['f3']);
+	
+}
+
+
 //setTimeout("location.reload(true);",20000);
 
 //localStorage.clear();
@@ -219,13 +305,18 @@ function getStaticContent(){
 }
 
 
+function showPage(page,tab, skip){
+	skip = typeof skip !== 'undefined' ? skip : false;
 
-function showPage(page,tab){
+
+	//Set History
+	if(!skip) {
+		set_current('showPage', page, tab);
+		previousPage = currentPage;	
 	
-	previousPage = currentPage;
-	if(previousPage=='login') previousPage='myiacquaint';
-	currentPage = page;
-
+		if(previousPage=='login') previousPage='myiacquaint';
+		currentPage = page;
+	}
 
 	// temp
 //	if(page=='login'){
@@ -511,7 +602,7 @@ function showPage(page,tab){
 	
 		                						for(e=0;e<data.animated[i].length;e++){       
 		                						if(userLangId==2) var videoUrl = data.animated[i][e]['video_code']; else var videoUrl = data.animated[i][e]['video_code_fr'];
-			            						videos +='<li onClick="showVideo(\''+escapeHtml(videoUrl)+'\')"  ontouch="showVideo(\''+escapeHtml(videoUrl)+'\')">'+
+			            						videos +='<li onClick="showVideo(\''+parse_vidly_id(videoUrl)+'\')">'+
 		                                                        '<img src="'+vidly_img(videoUrl)+'" />'+
 		                                                        '<div class="video_title">'+data.animated[i][e]['title']+'</div>'+
 		                                                       // '<div class="video_desc">'+data.animated[i][e]['description']+'</div>'+
@@ -559,7 +650,7 @@ function showPage(page,tab){
 		                						for(e=0;e<data.podcasts[i].length;e++){    
 		                						if(userLangId==2) var videoUrl = data.podcasts[i][e]['video_file_en']; else var videoUrl = data.podcasts[i][e]['video_file_fr'];
 			            						videos +='<li onClick="showVideo(\''+videoUrl+'\', \'podcasts\')">'+
-		                                                        '<img src="img/videoimage.png" />'+
+		                                                        '<img src="img/videoimage.png" style="width:90px !important"/>'+
 		                                                        '<div class="video_title">'+data.podcasts[i][e]['title']+'</div>'+
 		                                                        //'<div class="video_desc">'+data.podcasts[i][e]['description']+'</div>'+
 		                                                '</li>';                                            
@@ -765,6 +856,9 @@ function showPage(page,tab){
 
 	$('.tab').hide();
 	$('#'+page+' .'+tab).show();
+	
+	
+	
 
 	previousTab = currentTab;
     currentTab = tab;
@@ -774,11 +868,11 @@ function showPage(page,tab){
 
 function escapeHtml(unsafe) {
     return unsafe
-         .replace(/&/g, "&amp;")
+         .replace(/&/g, "&amp;") 
          .replace(/</g, "&lt;")
          .replace(/>/g, "&gt;")
          .replace(/"/g, "&quot;")
-         .replace(/_/g, "&#95;")
+         .replace(/_/g, "&#95;")   
          .replace(/'/g, "\\'");
  }
 
@@ -791,12 +885,15 @@ function showVideo(video, type){
 		$('#watch .vidly_wrapper').hide();
 		$('#watch .jplayer_wrapper').show();
 
-		if(userLangId==2){
-			$('#watch .jplayer_wrapper').html('<iframe width="100%" height="300px" src="'+baseUrl+'en/learn/jplayer_api/'+video+'"></iframe>');
-		}else{
-			$('#watch .jplayer_wrapper').html('<iframe width="100%" height="300px" src="'+baseUrl+'en/learn/jplayer_api/'+video+'"></iframe>');
-		}
-
+		//$('#watch .vidly_wrapper').html('<audio controls><source src="'+baseUrl+'uploads/tools/files/'+video+'">Your browser does not support the audio element.</audio>');
+	 	
+	 	
+	 	var	ret = '<div class="vidly_box podcast">';
+		ret += '<a href="'+baseUrl+'uploads/tools/files/'+video+'">';
+		ret += '<img src="img/empty.gif" class="vidly_video_play"/>';
+		ret += '<img src="img/podcast.png" class="vidly_video"/>';
+		ret += '</a></div>';
+		$('#watch .vidly_wrapper').html(ret);
 		window.scrollTo(0, 0);
 	}else{
 		$('#watch .jplayer_wrapper').html('');
@@ -819,6 +916,11 @@ var active_key = 0;
 var last_key = 0;
 
 function showModule(id,type){
+	
+	
+	//Set History
+	set_current('showModule', id, type);
+	
 	if(type=='custom'){
 		var url = baseUrl+'api/learn/custom_learning_plan/id/'+id+'/key/'+userKey;
 	}else{
@@ -899,6 +1001,12 @@ function showModule(id,type){
 }	
 
 function changeModuleResource(key,last){
+	
+	
+	//Set History
+	set_current('changeModuleResource', key, last);
+	
+
 	active_key = key;
 	$('#learn .tab3 .prev_tool').show();
 	$('#learn .tab3 .next_tool').show();
@@ -919,8 +1027,13 @@ function changeModuleResource(key,last){
 
 
 function browse(type,value){
+
+	
 	
 	if(!value) var value = 'all';
+	
+	//Set History
+	set_current('browse', type, value);
 
 	if(type=='byTopic'){
 		$.ajax({
@@ -1012,10 +1125,16 @@ function browse(type,value){
 var topicOffset=0;
 var typeOffset=0;
 function tools(cat,type,by,offset){
+
+
 	
 	if(!cat) var cat = 'all';
 	if(!type) var type = 'all';
 	if(!offset) var offset = 0;
+	
+	
+	//Set History
+	set_current('tools', cat, type, by, offset);
 
 	if(offset==0){
 		$('#browse .tab3 .tools_content').html('');
@@ -1081,7 +1200,15 @@ function tools(cat,type,by,offset){
 
 
 function updateFavorite(url_key, status, this_button){
+
+	
 	if(status=='add') var url = 'add_to_favorites'; else var url = 'remove_from_favorites';
+	
+	
+	//Set History
+	set_current('updateFavorite', url_key, status, this_button);
+	
+	
 	$.ajax({
         type: "GET",
         url: baseUrl+'api/browse/'+url+'/url_key/'+url_key+'/key/'+userKey,
@@ -1112,6 +1239,11 @@ function updateFavorite(url_key, status, this_button){
 
 
 function viewTool(id){
+
+	
+	//Set History
+	set_current('viewTool', id);
+	
 	$('#browse .tab6 .resource_title').html('');
     $('#browse .tab6 .resource_content').html('');
 
@@ -1141,6 +1273,7 @@ function viewTool(id){
 }
 
 function toolDescription(tool){
+	
 	var desc = '';
 
 	if(tool['type']=='calculator'){
@@ -1178,6 +1311,12 @@ function toolDescription(tool){
 
 
 function showMy(cat,type,id){
+	
+	
+	//Set History
+	set_current('showMy', cat, type, id);
+	
+	
 	$('#myiacquaint .resource_title').html('');
     $('#myiacquaint .resource_content').html('');
 
