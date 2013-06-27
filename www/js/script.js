@@ -5,6 +5,8 @@ var userKey = '';
 var userLang = 'en';
 var userLangId = 2;
 
+var use_hash = true;
+
 
 // need to improve this for back button
 var currentPage = 'myiacquaint';
@@ -24,30 +26,42 @@ current_arr['f1'] 	= 'login';
 
 function set_previous() {
 
+
+
 	previous_arr['func'] = current_arr['func'];
 	
 	if (typeof(current_arr['f1']) !=='undefined') {
         previous_arr['f1'] = current_arr['f1'];
     } else {
-	    previous_arr['f1'] = 'undefined';
+	    delete previous_arr['f1'];
     }
     
 	if (typeof(current_arr['f2']) !=='undefined') {
         previous_arr['f2'] = current_arr['f2'];
     } else {
-	    previous_arr['f2'] = 'undefined';
+	    delete previous_arr['f2'];
     }
     
 	if (typeof(current_arr['f3']) !=='undefined') {
         previous_arr['f3'] = current_arr['f3'];
     } else {
-	    previous_arr['f3'] = 'undefined';
+	    delete previous_arr['f3'];
     }
     
 	if (typeof(current_arr['f4']) !=='undefined') {
         previous_arr['f4'] = current_arr['f4'];
     } else {
-	    previous_arr['f4'] = 'undefined';
+	    delete previous_arr['f4'];
+    }
+	if (typeof(current_arr['page']) !=='undefined') {
+        previous_arr['page'] = current_arr['page'];
+    } else {
+	    delete previous_arr['page'];
+    }
+	if (typeof(current_arr['tab']) !=='undefined') {
+        previous_arr['tab'] = current_arr['tab'];
+    } else {
+	   	delete previous_arr['tab'];
     }
 	
 	
@@ -60,40 +74,64 @@ function set_current(func, f1, f2, f3, f4) {
 	
 	set_previous();
 	
+	if(func == 'showPage' && f1 == 'myiacquaint') {
+		$(".back-button").hide();
+	} else {
+		$(".back-button").show();
+	}
+	
 	current_arr['func'] = func;
 	
 	if (typeof(f1) !=='undefined') {
         current_arr['f1'] = f1;
     } else {
-	    current_arr['f1'] = 'undefined';
+	    delete current_arr['f1'];
     }
     
 	if (typeof(f2) !=='undefined') {
         current_arr['f2'] = f2;
     } else {
-	    current_arr['f2'] == 'undefined';
+	    delete current_arr['f2'];
     }
     
 	if (typeof(f3) !=='undefined') {
         current_arr['f3'] = f3;
     } else {
-	    current_arr['f3'] == 'undefined';
+	    delete current_arr['f3'];
     }
     
-	console.log('Previous:');
-	console.log(previous_arr);
-	console.log('Current:');
-	console.log(current_arr);
-    
+    current_arr['page'] = currentPage;
+    current_arr['tab'] = currentTab;
+
+	window.location.hash = 'index.html?'+http_build_query(current_arr);
+	
     
 
 }
+$(function(){
+
+
+	$("#go_back").click(function(){
+		var hash = location.hash;
+		hash = hash.replace('#index.html?', '');
+    	var arr = {};
+    	parse_str(hash, arr);
+    
+    	previous_arr = arr;
+    
+    	go_previous();
+	});
+  
+ 
+  
+});
+
+
 
 
 function go_previous() {
-	showPage(previousPage,previousTab, true);
+	showPage(previous_arr['page'],previous_arr['tab'], true);
 	
-	console.log(previous_arr);
 	window[previous_arr['func']](previous_arr['f1'], previous_arr['f2'], previous_arr['f3']);
 	
 }
@@ -603,7 +641,7 @@ function showPage(page,tab, skip){
 		                						for(e=0;e<data.animated[i].length;e++){       
 		                						if(userLangId==2) var videoUrl = data.animated[i][e]['video_code']; else var videoUrl = data.animated[i][e]['video_code_fr'];
 			            						videos +='<li onClick="showVideo(\''+parse_vidly_id(videoUrl)+'\')">'+
-		                                                        '<img src="'+vidly_img(videoUrl)+'" />'+
+		                                                        '<div class="video_img_container shadow2 br2"><img src="'+vidly_img(videoUrl)+'"/></div>'+
 		                                                        '<div class="video_title">'+data.animated[i][e]['title']+'</div>'+
 		                                                       // '<div class="video_desc">'+data.animated[i][e]['description']+'</div>'+
 		                                                  '</li>';                                            
@@ -626,7 +664,7 @@ function showPage(page,tab, skip){
 		                						for(e=0;e<data.video[i].length;e++){       
 		                						if(userLangId==2) var videoUrl = data.video[i][e]['video_code']; else var videoUrl = data.video[i][e]['video_code_fr'];
 			            						videos +='<li onClick="showVideo(\''+parse_vidly_id(videoUrl)+'\')">'+
-		                                                        '<img src="'+vidly_img(videoUrl)+'" />'+
+		                                                        '<div class="video_img_container shadow2 br2"><img src="'+vidly_img(videoUrl)+'"/></div>'+
 		                                                        '<div class="video_title">'+data.video[i][e]['title']+'</div>'+
 		                                                        //'<div class="video_desc">'+data.video[i][e]['description']+'</div>'+
 		                                                '</li>';                                            
@@ -650,7 +688,7 @@ function showPage(page,tab, skip){
 		                						for(e=0;e<data.podcasts[i].length;e++){    
 		                						if(userLangId==2) var videoUrl = data.podcasts[i][e]['video_file_en']; else var videoUrl = data.podcasts[i][e]['video_file_fr'];
 			            						videos +='<li onClick="showVideo(\''+videoUrl+'\', \'podcasts\')">'+
-		                                                        '<img src="img/videoimage.png" style="width:90px !important"/>'+
+		                                                        '<div class="video_img_container shadow2"><img src="img/podcast_image.png"/></div>'+
 		                                                        '<div class="video_title">'+data.podcasts[i][e]['title']+'</div>'+
 		                                                        //'<div class="video_desc">'+data.podcasts[i][e]['description']+'</div>'+
 		                                                '</li>';                                            
@@ -878,6 +916,9 @@ function escapeHtml(unsafe) {
 
 
 function showVideo(video, type){
+
+	//Set history
+	set_current('showVideo', video, type);
 
 	if(type=='podcasts'){
 		$('#watch .vidly_wrapper').html('');

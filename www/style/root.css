@@ -113,10 +113,11 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    background: url(../img/back-button.png) no-repeat 0 0;
 	    font-size: 13px;
 	    font-weight: 700;
-	    color: #ccc;
+	    color: #fff;
 	    text-align: center;
 	    text-shadow: 1px 1px 0 #242424;
 	    padding: 10px 0 0 7px;
+	    line-height: 16px;
 	}
 	
 	.back-button a:hover {
@@ -1958,14 +1959,29 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 		top:0;
 		left: 0;
 	}
+	.shadow2 {
+	  -moz-box-shadow:    2px 2px 2px 2px #ccc;
+	  -webkit-box-shadow: 2px 2px 2px 2px #ccc;
+	  box-shadow:         2px 2px 2px 2px #ccc;
+	}
+	.br2{
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+	}
 	.vidly_wrapper{padding: 0;margin:0}
 	
 	div.slider ul li{width: 315px !important;}
 
-	div.slider ul li{height: 110px;padding: 0; border-bottom: 1px solid #ccc;margin-bottom: 3px;clear: both}
+	div.slider ul li{height: 112px;padding: 0; border-bottom: 1px solid #ccc;margin-bottom: 3px;clear: both}
 	
-	div.slider ul li img{width: 125px; float:left;padding:3px; margin-right: 5px;}
-	div.slider ul li div.video_title{float:left;line-height: 14px; font-size: 12px;font-weight: bold;height: 100px;width:170px;}
+	div.slider ul li div.video_title{float:left;line-height: 16px; font-size: 14px;font-weight: bold;height: 100px;width:170px;margin-top:10px;color:#4DC6F4; text-shadow: 1px 1px 0 #fff}
+	
+	div.slider ul li div.video_img_container{height:98px; width:123px;padding:auto;position: relative;overflow: hidden; margin:5px;float:left;border:1px solid #fff}
+	
+	div.slider ul li div.video_img_container img{height:98px; margin:auto;}
+	
+	
 
 /* Landscape */
 @media screen and (orientation:landscape) {

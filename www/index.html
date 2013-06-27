@@ -24,11 +24,11 @@
     <script type="text/javascript" src="phonegap.js"></script>
     <script type="text/javascript" src="js/default.js?v=21"></script>
     <script type="text/javascript" src="js/jquery.min.js?v=1"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js?v=1"></script>
     <link rel="stylesheet" href="style/jquery-ui.css?v=1">
  
 
     <link href="style/jplayer.blue.monday.css?v=1" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="js/jquery.jplayer.min.js?v=1"></script>    
 
 
     <script type="text/javascript" src="js/toogle.js?v=1"></script>
@@ -38,10 +38,10 @@
     <script type="text/javascript" src="js/sly.min.js?v=1"></script>
 
     <script src="js/jquery-ui.js?v=1"></script>
+    <script src="js/plugins.js?v=1"></script>
 
 
     <script type="text/javascript" src="js/script.js?v=11"></script>
-    <script src="js/plugins.js?v=1"></script>
 
 
 
@@ -125,10 +125,8 @@
             <div class="header">
 
                 <!-- back button not active, because we are in index -->
-                <!--
-                <div class="back-button"> <a href="javascript:void(0);" onClick="javascript:go_previous();">Back</a>  </div>
-                -->
-
+                <div class="back-button" style="display:none" data-direction="reverse"> <a href="javascript:void(0);"  data-rel="back" id="go_back">Back</a>  </div>
+                
                 <!--<div id="ios-arrow-left" title="Albums"></div>-->
                 <!-- your logo size : 130x40 -->
                 <div class="logo"><a href="javascript:void(0);" onClick="javascript:showPage('myiacquaint');"><img src="img/logos/myiaquaint_logo.png"  height="20" alt="logo"/></a></div>
