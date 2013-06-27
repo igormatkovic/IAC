@@ -21,8 +21,11 @@ var current_arr = new Array();
 current_arr['func'] = 'showPage';
 current_arr['f1'] 	= 'login';
 
+	
 
-
+if(!navigator.onLine) {
+	alert('iAcquaint app requires a internet connection.');  
+}
 
 function set_previous() {
 
@@ -480,7 +483,7 @@ function showPage(page,tab, skip){
 		                                '<img src="img/rightarrow.png" alt=""> '+formatDate(data.custom_plans[i].add_date)+' - <span class="bold">'+data.custom_plans[i].title+'</span>'+
 		                            '</a>'+
 		                        '</div>'+
-		                        '<a href="javascript:void(0);" onClick="deleteMy(\'plans\',\'custom\','+data.custom_plans[i].id+',this);" class="bluebtn">Delete X</a>'+
+		                        '<a href="javascript:void(0);" onClick="deleteMy(\'plans\',\'custom\','+data.custom_plans[i].id+',this);" class="bluebtn deletebtn">Delete X</a>'+
 		                    '</div>';
 	                	}
 	                	for(i=0;i<data.started_plans.length;i++){ 
@@ -490,7 +493,7 @@ function showPage(page,tab, skip){
 		                                '<img src="img/rightarrow.png" alt=""> '+formatDate(data.started_plans[i].add_date)+' - <span class="bold">'+data.started_plans[i].title+'</span>'+
 		                            '</a>'+
 		                        '</div>'+
-		                        '<a href="javascript:void(0);" onClick="deleteMy(\'plans\',\'started\','+data.started_plans[i].id+',this);" class="bluebtn">Delete X</a>'+
+		                        '<a href="javascript:void(0);" onClick="deleteMy(\'plans\',\'started\','+data.started_plans[i].id+',this);" class="bluebtn deletebtn">Delete X</a>'+
 		                    '</div>';
 	                	}
 	
@@ -507,7 +510,7 @@ function showPage(page,tab, skip){
 		                                '<img src="img/rightarrow.png" alt=""> <span class="bold">'+data.favorites[i].title+'</span>'+
 		                            '</a>'+
 		                        '</div>'+
-		                        '<a href="javascript:void(0);" onClick="deleteMy(\'favorites\',\''+data.favorites[i].type+'\','+data.favorites[i].url_key+',this);" class="bluebtn">Delete X</a>'+
+		                        '<a href="javascript:void(0);" onClick="deleteMy(\'favorites\',\''+data.favorites[i].type+'\','+data.favorites[i].url_key+',this);" class="bluebtn deletebtn">Delete X</a>'+
 		                    '</div>';
 	                	}
 	
@@ -516,10 +519,10 @@ function showPage(page,tab, skip){
 		            		myMobile +='<div class="byneedrow">'+
 		                        '<div class="tekst1">'+
 		                            '<a href="#tab7" onClick="showMy(\'mobile\',\'mobile\',\''+data.my_mobile[i].id+'\');">'+
-		                                '<img src="img/rightarrow.png" alt=""> '+formatDate(data.my_mobile[i].add_date)+' - <span class="bold">'+data.my_mobile[i].title+'</span>'+
+		                                '<img src="img/rightarrow.png" alt=""> <div class="mobile_date">'+formatDate(data.my_mobile[i].add_date)+'</div><span class="bold">'+data.my_mobile[i].title+'</span>'+
 		                            '</a>'+
 		                        '</div>'+
-		                        '<a href="javascript:void(0);" onClick="deleteMy(\'mobile\',\'mobile\','+data.my_mobile[i].id+',this);" class="bluebtn">Delete X</a>'+
+		                        '<a href="javascript:void(0);" onClick="deleteMy(\'mobile\',\'mobile\','+data.my_mobile[i].id+',this);" class="bluebtn  deletebtn">Delete X</a>'+
 		                    '</div>';
 	                	}
 	
@@ -528,7 +531,7 @@ function showPage(page,tab, skip){
 		            		myQuestions +='<div class="byneedrow">'+
 		                        '<div class="tekst1">'+
 		                            '<a href="#tab7" onClick="showMy(\'questions\',\'questions\',\''+data.asked_questions[i].id+'\');">'+
-		                                '<img src="img/rightarrow.png" alt=""> '+formatDate(data.favorites[i].add_date)+' - <span class="bold">'+data.asked_questions[i].title+'</span>'+
+		                                '<img src="img/rightarrow.png" alt=""> <div class="mobile_date"> '+formatDate(data.favorites[i].add_date)+'</div> <span class="bold">'+data.asked_questions[i].title+'</span>'+
 		                            '</a>'+
 		                        '</div>'+
 		                    '</div>';

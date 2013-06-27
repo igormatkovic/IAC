@@ -227,7 +227,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	}
 	
 	.tekst {
-	    width: 60%;
+	    width: 222px;
 	    float: left;
 	    overflow: hidden;
 	    text-overflow: ellipsis;
@@ -255,7 +255,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	
 	    background-color: #d4f2fd;
 	    border: 1px solid #b4dfeb;
-	    width: 60%;
+	    width: 195px;
 	    float: left;
 	    color: #76b3c9;
 	    padding: 27px;
@@ -425,6 +425,15 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	
 	}
 	
+	
+	.deletebtn{
+		padding:3px !important;
+	}
+	
+	
+	.mobile_date{
+		padding-left:3px; font-size:12px; color:#636363; font-weight: bold;margin-left:32px;
+	}
 	/* Contact */
 	#contact {
 	    padding: 10px 1px 23px;
@@ -1482,13 +1491,11 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	
 	.tekst1 {
 	    width: 70%;
-	    line-height: 40px;
 	    float: left;
-	    height: 40px;
 	    overflow: hidden;
 	    text-overflow: ellipsis;
 	    white-space: nowrap;
-	font-size: 18px;
+	    font-size: 15px;
 	    overflow: hidden; /* "overflow" value must be different from "visible" */
 	
 	    text-overflow: ellipsis;
@@ -1496,19 +1503,22 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	
 	.tekst1 img {
 	    margin-left: 5px;
-	    margin-top: 10px;
+	    float: left;
 	}
 	
 	.tekst1 span {
 	    font-weight: bold;
+	    float:left;
+	    margin-top:5px;
+	    margin-left:5px;
 	}
 	.tekst1 a{
 	    text-decoration: none;
 	    color: #8f8f8f;
-	    font-size: 18px;
+	    font-size: 15px;
 	}
 	.getstartedrow {
-	    display: block;
+	    display: block; 
 	    position: relative;
 	    overflow: hidden;
 	    padding: 12px 10px;
@@ -1818,12 +1828,9 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	
 	.resource_title{
 	    color: #07b0ee;
-	    font-size: 14px;
-	    padding-top: 8px;
-	    padding-bottom: 8px;
-	    text-shadow: 1px 1px 1px #07b0ee;
-	    filter: dropshadow(color=#07b0ee, offx=1, offy=1);
-	
+	    font-size: 16px;
+	    padding: 8px 0;
+	    font-weight:bold;
 	}
 	
 	.resource_content{
