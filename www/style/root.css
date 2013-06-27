@@ -30,10 +30,11 @@ background-color: white;}
 #main {overflow:auto;
     padding-bottom: 52px;}  /* must be same height as the footer */
 
-#footer {position: relative;
+#footer {position: fixed;
     margin-top: -52px; /* negative value of footer height */
     height: 52px;
-    clear:both;}
+    bottom:0;
+    }
 
 
 

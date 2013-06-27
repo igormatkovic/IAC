@@ -160,7 +160,6 @@ function check_login() {
 		// console.log(user_key);
 		userKey = user_key;
 		userLangId = user_lang_id;
-		userLang = 'en';
 		if(userLangId==2) userLang='en'; else userLang='fr';
 		
 		return true;
@@ -382,6 +381,7 @@ function showPage(page,tab, skip){
 		$('#'+page).show();
 
 		if(page=='learn'){
+			$("#top_logo").attr('src', 'img/logos/learn_logo.png');
 			$('.bottombar li').removeClass('popout');
 			$('.bottombar li a').removeClass('blue');
 			$('.bottombar li a div').removeClass('white');
@@ -392,6 +392,8 @@ function showPage(page,tab, skip){
 			$('.bottombar li:eq(0) a div').removeClass('gray');			
 			$('.bottombar li:eq(0) a div:eq(0)').addClass('white');
 		}else if(page=='ask'){
+			$("#top_logo").attr('src', 'img/logos/ask_logo.png');
+
 			$('.bottombar li').removeClass('popout');
 			$('.bottombar li a').removeClass('blue');
 			$('.bottombar li a div').removeClass('white');
@@ -402,6 +404,8 @@ function showPage(page,tab, skip){
 			$('.bottombar li:eq(1) a div').removeClass('gray');			
 			$('.bottombar li:eq(1) a div:eq(0)').addClass('white');
 		}else if(page=='myiacquaint'){
+			$("#top_logo").attr('src', 'img/logos/myiaquaint_logo.png');
+
 			$('.bottombar li').removeClass('popout');
 			$('.bottombar li a').removeClass('blue');
 			$('.bottombar li a div').removeClass('white');
@@ -546,6 +550,9 @@ function showPage(page,tab, skip){
 	        });
 
 		}else if(page=='browse'){
+			
+			$("#top_logo").attr('src', 'img/logos/browse_logo.png');
+
 			$('.bottombar li').removeClass('popout');
 			$('.bottombar li a').removeClass('blue');
 			$('.bottombar li a div').removeClass('white');
@@ -595,7 +602,9 @@ function showPage(page,tab, skip){
 	            }
 	        });
 
-		}else if(page=='watch'){
+		}else if(page=='watch'){	
+						$("#top_logo").attr('src', 'img/logos/watch_logo.png');
+
 			$('.bottombar li').removeClass('popout');
 			$('.bottombar li a').removeClass('blue');
 			$('.bottombar li a div').removeClass('white');
