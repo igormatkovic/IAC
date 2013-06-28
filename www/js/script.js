@@ -116,8 +116,6 @@ function set_current(func, f1, f2, f3, f4) {
     history.pushState(null, null, hh);
     
     
-	var ff = previous_arr.func;
-	console.log(ff);
 
 	
 
@@ -145,12 +143,7 @@ $(function(){
 		
     	var arr = new Array();
     	parse_str(url, arr);
-    	
-    	console.log(' 1');
-    	console.log(url);
-
-    	console.log(' 1');
-    	console.log(arr);
+   
     
     	previous_arr = arr;
     	

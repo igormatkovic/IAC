@@ -2100,7 +2100,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
     /*height: 250px;*/
     /*line-height: 110px;*/
     overflow: hidden;
-    width: 175px;
+    width: 205px;
     float: left;
     margin-top:10px;
     margin-left:5px;
@@ -2123,7 +2123,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
     width: 40px;
 }
 #myiacquaint .singleslideimg{
-    min-height: 36px;
+    min-height: 46px;
 
 }
 
@@ -2185,7 +2185,7 @@ margin: auto;
 #myiacquaint .frame ul li {
     float: left;
     /*width: 227px;*/
-    width: 40px;
+    width: 50px;
     /*height: 100%;*/
     height:60px;
     margin: 0 1px 0 0;
