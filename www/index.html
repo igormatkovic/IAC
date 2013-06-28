@@ -17,7 +17,7 @@
 	<link rel="shortcut icon" href="img/touch/apple-touch-icon.png">
         
         
-    <link rel="stylesheet" type="text/css" href="http://acquaintdev.com/mob/style/root.css?v=9"/>
+    <link rel="stylesheet" type="text/css" id="refr" href="http://acquaintdev.com/mob/style/root.css?v=11"/>
 
 
     <script type="text/javascript" src="phonegap.js"></script>
@@ -73,7 +73,7 @@
                 <div id="contact">
                   <form id="form2" name="form2" method="post" action="">
 
-                    <input name="email" type="email" placeholder="email" class="simpleinput"  />
+                    <input name="email" type="email" placeholder="email" class="simpleinput" id="login_email"  />
                     <p class="titlelabel"></p>
                     <input name="password" type="password" placeholder="password" class="simpleinput" />
 
@@ -123,10 +123,6 @@
                 <!-- back button not active, because we are in index -->
                 <div class="back-button" style="display:none" data-direction="reverse"> <a href="javascript:void(0);"  data-rel="back" id="go_back">Back</a>  </div>
                 
-                <!-- back button not active, because we are in index -->
-                <div style="float:right"> <a href="javascript:void(0);" onclick="refr()">refr</a>  </div>
-                
-                <!--<div id="ios-arrow-left" title="Albums"></div>-->
                 <!-- your logo size : 130x40 -->
                 <div class="logo"><a href="javascript:void(0);" onClick="javascript:showPage('myiacquaint');"><img src="img/logos/myiaquaint_logo.png"  height="20" alt="logo" id="top_logo"/></a></div>
 
@@ -192,8 +188,8 @@
                                     <div class="expertise">300 points to <span> "expert"</span></div>
                                 </div>
                             </div>
-
-
+                            <br class="cl"/>
+                            <div class="mini_boxes">  
                                 <div class="hard br3 hard_left">
                                     <div class="top">
                                         <div class="lefticon"><img src="img/disc.png"></div>
@@ -247,20 +243,14 @@
                                         <a href="#tab6" class="viewall">View All</a>
                                     </div>
                                 </div>
-
+                            </div>
+                            <br class="cl"/>
                         </div>
 
 
 
                         <div class="tab tab2"> 
-                            <!--
-                            <div class="getstartedrow">
-                                <img src="img/takeatour.png" alt="">
-                                <div class="getstarttext">
-                                    Take a website tour</div>
-                                <a href="#tab8" class="starbtn tablink"><img src="img/getstartbtn.png" alt=""></a>
-                            </div>
-                            -->
+                   
                             <div class="getstartedrow">
                                 <img src="img/explore.png" alt="">
                                 <div class="getstarttext">
@@ -294,7 +284,7 @@
 
                         <!-- view get started/explore iacquaint -->
                         <div class="tab tab9"></div>
-
+                       
                     </div>
 
                 </div>

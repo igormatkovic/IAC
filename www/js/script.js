@@ -21,11 +21,16 @@ var current_arr = new Array();
 current_arr['func'] = 'showPage';
 current_arr['f1'] 	= 'login';
 
-	
+var user_email = localStorage.getItem('user_email');
+
+if(user_email && user_email.length > 4) {
+	$("#login_email").val(user_email);
+}
 
 if(!navigator.onLine) {
 	alert('iAcquaint app requires a internet connection.');  
 }
+
 
 function set_previous() {
 
@@ -216,6 +221,7 @@ $(document).ready(function(){
                 	localStorage.setItem('key', userKey);
                 	localStorage.setItem('lang_id', userLangId);
                 	localStorage.setItem('lang', userLang);
+                	localStorage.setItem('user_email', email);
                 	
                 	showPage('myiacquaint');
                 }
