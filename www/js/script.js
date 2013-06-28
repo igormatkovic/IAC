@@ -111,22 +111,49 @@ function set_current(func, f1, f2, f3, f4) {
     current_arr['page'] = currentPage;
     current_arr['tab'] = currentTab;
 
-	window.location.hash = 'index.html?'+http_build_query(current_arr);
+	var hh = 'index.html?'+http_build_query(current_arr);
 	
+    history.pushState(null, null, hh);
     
+    
+	var ff = previous_arr.func;
+	console.log(ff);
+
+	
 
 }
 $(function(){
 
 
 	$("#go_back").click(function(){
-		var hash = location.hash;
-		hash = hash.replace('#index.html?', '');
-    	var arr = {};
-    	parse_str(hash, arr);
+		history.go(-1);
+		/*
+		var hash = document.URL;
+    	console.log(hash);
+		hash = hash.replace('index.html?', '');
+		hash = hash.replace('#', '');
+		
+		
+		*/
+		
+		var url = document.location.href;
+		url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+		url = url.substring(url.lastIndexOf("/") + 1, url.length);
+		
+		url = url.replace('index.html', '');
+		url = url.replace('?', '');
+		
+    	var arr = new Array();
+    	parse_str(url, arr);
+    	
+    	console.log(' 1');
+    	console.log(url);
+
+    	console.log(' 1');
+    	console.log(arr);
     
     	previous_arr = arr;
-    
+    	
     	go_previous();
 	});
   
@@ -138,9 +165,9 @@ $(function(){
 
 
 function go_previous() {
-	showPage(previous_arr['page'],previous_arr['tab'], true);
-	
-	window[previous_arr['func']](previous_arr['f1'], previous_arr['f2'], previous_arr['f3']);
+
+	var ff = previous_arr['func'];
+	window[ff](previous_arr['f1'], previous_arr['f2'], previous_arr['f3']);
 	
 }
 
@@ -224,6 +251,9 @@ $(document).ready(function(){
                 	localStorage.setItem('user_email', email);
                 	
                 	showPage('myiacquaint');
+                	
+                	
+                	window.scrollTo(0, 0);
                 }
 
                 // get content for get started tour/explore
@@ -490,7 +520,7 @@ function showPage(page,tab, skip){
 		            		myPlans +='<div class="byneedrow">'+
 		                        '<div class="tekst1">'+
 		                            '<a href="javascript:void(0);" onClick="showMy(\'plans\',\'custom\','+data.custom_plans[i].id+');">'+
-		                                '<img src="img/rightarrow.png" alt=""> '+formatDate(data.custom_plans[i].add_date)+' - <span class="bold">'+data.custom_plans[i].title+'</span>'+
+		                                '<div class="date_arrow_box"><img src="img/rightarrow.png" alt=""><br class="clear"/>'+formatDate(data.custom_plans[i].add_date)+'</div><span class="bold">'+data.custom_plans[i].title+'</span>'+
 		                            '</a>'+
 		                        '</div>'+
 		                        '<a href="javascript:void(0);" onClick="deleteMy(\'plans\',\'custom\','+data.custom_plans[i].id+',this);" class="bluebtn deletebtn">Delete X</a>'+
@@ -500,7 +530,7 @@ function showPage(page,tab, skip){
 		            		myPlans +='<div class="byneedrow">'+
 		                        '<div class="tekst1">'+
 		                            '<a href="javascript:void(0);" onClick="showMy(\'plans\',\'started\','+data.started_plans[i].module_id+');">'+
-		                                '<img src="img/rightarrow.png" alt=""> '+formatDate(data.started_plans[i].add_date)+' - <span class="bold">'+data.started_plans[i].title+'</span>'+
+		                                '<div class="date_arrow_box"><img src="img/rightarrow.png" alt=""> <br class="clear"/>'+formatDate(data.started_plans[i].add_date)+'</div><span class="bold">'+data.started_plans[i].title+'</span>'+
 		                            '</a>'+
 		                        '</div>'+
 		                        '<a href="javascript:void(0);" onClick="deleteMy(\'plans\',\'started\','+data.started_plans[i].id+',this);" class="bluebtn deletebtn">Delete X</a>'+

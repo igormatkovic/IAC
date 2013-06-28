@@ -1500,10 +1500,10 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	.tekst1 {
 	    width: 70%;
 	    float: left;
-	    overflow: hidden;
 	    text-overflow: ellipsis;
 	    white-space: nowrap;
 	    font-size: 15px;
+	    min-height: 16px;
 	    overflow: hidden; /* "overflow" value must be different from "visible" */
 	
 	    text-overflow: ellipsis;
@@ -1524,6 +1524,20 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    text-decoration: none;
 	    color: #8f8f8f;
 	    font-size: 15px;
+	}
+	
+	.date_arrow_box{
+		float:left;
+		width: 62px;
+		text-align: center;
+		color:#a3a3a3;
+		font-size:11px;
+	}
+	.date_arrow_box img{
+		clear: both;
+		margin-bottom: 2px;
+		float:none !important;
+		text-align: center;
 	}
 	.getstartedrow {
 	    display: block; 
