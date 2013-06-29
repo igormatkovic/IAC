@@ -149,11 +149,33 @@ $(function(){
     	//Dont push this to history!
     	push_it = false;
 		var ff = arr['func'];
+		
 	
 		//Run the function
 		window[ff](arr['f1'], arr['f2'], arr['f3'], arr['f4']);
+		
+		
+		
+		if(ff == 'showPage' && arr['f1'] == 'myiacquaint') {
+			$(".back-button").hide();
+		} else {
+			$(".back-button").show();
+		}
+		
 	  
 	});
+	
+	
+	$(document).on('click','.tabs a',function(e){
+		e.preventDefault();
+	    var val=$(this).attr('href').replace('#','');
+	    $('.tab').hide();
+	    $('.tabs a').removeClass('tabactive');
+	    $(this).addClass('tabactive');
+	
+	    $('#'+val).show();
+	})
+	
 
 	$("#go_back").click(function(){
 	//	history.back();
@@ -281,7 +303,8 @@ $(document).ready(function(){
 		$(this).find('.tabs a:first').addClass('tabactive');
 	});
 
-	$(document).on('click','.tabs a, .viewall, .tablink',function(){
+	$(document).on('click','.tabs a, .viewall, .tablink',function(e){
+		e.preventDefault();
 	    var val = $(this).attr('href').replace('#','');
 	    $(this).parents('.content').find('.tab').hide();
 	    $(this).parents('.content').find('.tabs a').removeClass('tabactive');
