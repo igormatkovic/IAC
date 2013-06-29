@@ -33,6 +33,8 @@ if(!navigator.onLine) {
 var push_it = true;
 
 
+
+loading(true);
 function set_previous() {
 
 
@@ -199,11 +201,18 @@ $(function(){
     //	go_previous();
 	});
   
- 
+	loading(true);
   
 });
 
-
+function loading(status) {
+	if(status) {
+		$("#loading").fadeIn('fast');
+	} else {
+		$("#loading").fadeOut('slow');
+	}
+	
+}
 
 
 function set_tab(tab, main) {
@@ -266,7 +275,7 @@ $(document).ready(function(){
     $('input[name=login]').click(function(){
     	var email = $('input[name=email]').val();
     	var password = $('input[name=password]').val();
-
+    	loading(true);
     	$.ajax({
             type: 'POST',
             url: baseUrl+'api/user/login/',
@@ -299,6 +308,8 @@ $(document).ready(function(){
                 	
                 	window.scrollTo(0, 0);
                 }
+                
+                loading(false);
 
                 // get content for get started tour/explore
                 getStaticContent();
@@ -471,7 +482,10 @@ function showPage(page,tab, skip){
 		}else if(page=='myiacquaint'){
 			$("#top_logo").attr('src', 'img/logos/myiaquaint_logo.png');
 			$('li.footer_myiaq').addClass('popout');
-
+			
+			
+			loading(true);
+                
 			$.ajax({
 	            type: "GET",
 	            url: baseUrl+'api/my_iacquaint/index/key/'+userKey,
@@ -602,6 +616,9 @@ function showPage(page,tab, skip){
 	                    $('#myiacquaint .tab5').html(myMobile);
 	                    $('#myiacquaint .tab6').html(myQuestions);
                     }
+                    
+                    
+                    loading(false);
 	            }
 	        });
 
@@ -609,6 +626,8 @@ function showPage(page,tab, skip){
 			
 			$("#top_logo").attr('src', 'img/logos/browse_logo.png');
 			$('li.footer_browse').addClass('popout');
+			loading(true);
+			
 			$.ajax({
 	            type: "GET",
 	            url: baseUrl+'api/browse/index/key/'+userKey,
@@ -642,13 +661,16 @@ function showPage(page,tab, skip){
 	
 	                    $('#browse .tab2').html(byType);
 	                }
+	                loading(false);
+			
 	            }
 	        });
 
 		}else if(page=='watch'){	
 			$("#top_logo").attr('src', 'img/logos/watch_logo.png');
 			$('li.footer_watch').addClass('popout');
-
+
+	                loading(true);
 
 			$.ajax({
 	            type: "GET",
@@ -751,7 +773,8 @@ function showPage(page,tab, skip){
 	
 
 				    }
-
+				    
+	                loading(false);
 	            }
 	        });
 		}
@@ -834,7 +857,8 @@ function showModule(id,type){
 	}else{
 		var url = baseUrl+'api/learn/show_entire_learning_plan/id/'+id+'/key/'+userKey;
 	}
-
+	
+	loading(true);
 	$.ajax({
         type: "GET",
         url: url,
@@ -903,6 +927,9 @@ function showModule(id,type){
 	
 	            changeModuleResource(active_key, last_key);
 	        }
+	        
+	        
+	        loading(false);
         }
     });
 
@@ -944,6 +971,8 @@ function browse(type,value){
 	set_current('browse', type, value);
 
 	if(type=='byTopic'){
+	
+		loading(true);
 		$.ajax({
 	        type: "GET",
 	        url: baseUrl+'api/browse/index/type/by_topic/value/'+value+'/key/'+userKey,
@@ -969,9 +998,12 @@ function browse(type,value){
 	
 		            $('#browse .tab3').html(list);
 	            }
+	            
+	            loading(false);
 	        }
 	    });    
 	}else if(type=='byType'){
+		 loading(true);
 		$.ajax({
 	        type: "GET",
 	        url: baseUrl+'api/browse/index/type/by_type/value/'+value+'/key/'+userKey,
@@ -997,12 +1029,14 @@ function browse(type,value){
 	
 		            $('#browse .tab4').html(list);
 	            }
+	             loading(false);
+	             
 	        }
 	    });
 	}else if(type=='feelingLucky'){
 		$('#browse .tab5 .resource_title').html('');
     	$('#browse .tab5 .resource_content').html('');
-
+    	 loading(true);
 		$.ajax({
 	        type: "GET",
 	        url: baseUrl+'api/browse/index/type/feeling_lucky/value/'+value+'/key/'+userKey,
@@ -1023,6 +1057,7 @@ function browse(type,value){
 		        	$('.tab').hide();
 		        	$('#browse .tab5').show();
 		        }   
+		         loading(false);
 	        }
 	    });
 	}
@@ -1050,7 +1085,7 @@ function tools(cat,type,by,offset){
 		$('#browse .tab3 .more').show();
 		$('#browse .tab4 .more').show();
 	}
-
+ loading(true);
 	$.ajax({
         type: "GET",
         url: baseUrl+'api/browse/tools/cat/'+cat+'/type/'+type+'/offset/'+offset+'/key/'+userKey,
@@ -1101,6 +1136,8 @@ function tools(cat,type,by,offset){
 		        	}
         	
         	}
+        	 loading(false);
+        	 
         }
     });    	
 
@@ -1116,7 +1153,7 @@ function updateFavorite(url_key, status, this_button){
 	//Set History
 	set_current('updateFavorite', url_key, status, this_button);
 	
-	
+	 loading(true);
 	$.ajax({
         type: "GET",
         url: baseUrl+'api/browse/'+url+'/url_key/'+url_key+'/key/'+userKey,
@@ -1141,6 +1178,9 @@ function updateFavorite(url_key, status, this_button){
 	        	}
 	       		$(this_button).attr('onClick','javascript:updateFavorite(\''+url_key+'\',\''+new_status+'\',this)');
 	       }
+	       
+	        loading(false);
+	        
         }
     });  
 }
@@ -1154,7 +1194,7 @@ function viewTool(id){
 	
 	$('#browse .tab6 .resource_title').html('');
     $('#browse .tab6 .resource_content').html('');
-
+ loading(true);
 	$.ajax({
         type: "GET",
         url: baseUrl+'api/browse/view_tool/id/'+id+'/key/'+userKey,
@@ -1176,6 +1216,8 @@ function viewTool(id){
 	        	$('#browse .tab6 .resource_content').html(toolDescription(data));
 	        
 	        }
+	        
+	        loading(false);
         }
     });  
 }

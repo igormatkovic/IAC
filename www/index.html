@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -35,10 +35,27 @@
 .body{width:90%}
 .img_login_logo{width:220px}
 
+#loading{
+	position: fixed;
+	min-height: 700px;
+	width: 320px;
+	z-index: 10000;
+	background: transparent url('img/black.png');
+}
+#loading img{
+	position: absolute;
+	top:10px;
+	right:10px;
+	opacity: 0.8;
+}
+
 </style>
     
 </head>
 <body>
+<div id="loading">
+<img src="img/382.gif" alt="loading"/>
+</div>
 <div id="page" data-role="page">
 
 <!-- Start of first page -->
