@@ -18,8 +18,6 @@ var previousTab = 1;
 
 var previous_arr = new Array();
 var current_arr = new Array();
-current_arr['func'] = 'showPage';
-current_arr['f1'] 	= 'login';
 
 var user_email = localStorage.getItem('user_email');
 
@@ -113,40 +111,24 @@ function set_current(func, f1, f2, f3, f4) {
 
 	var hh = 'index.html?'+http_build_query(current_arr);
 	
-    history.pushState(null, null, hh);
-    
+    history.pushState(null, hh, hh);
     
 
 	
 
 }
-$(function(){
 
+
+$(function(){	
+
+
+	$(window).bind('popstate', function(event) {
+	  //  console.log(event);
+	});
 
 	$("#go_back").click(function(){
-		history.go(-1);
-		/*
-		var hash = document.URL;
-    	console.log(hash);
-		hash = hash.replace('index.html?', '');
-		hash = hash.replace('#', '');
-		
-		
-		*/
-		
-		var url = document.location.href;
-		url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
-		url = url.substring(url.lastIndexOf("/") + 1, url.length);
-		
-		url = url.replace('index.html', '');
-		url = url.replace('?', '');
-		
-    	var arr = new Array();
-    	parse_str(url, arr);
-   
-    
-    	previous_arr = arr;
-    	
+		history.back();
+
     	go_previous();
 	});
   
@@ -158,6 +140,30 @@ $(function(){
 
 
 function go_previous() {
+
+		
+		/*
+	var url = window.location.url;
+		console.log(url);
+		url = url.replace('index.html', '');
+		url = url.replace('?', '');
+		url = url.replace('#', '');
+		*/
+		
+		
+		var url = document.location.href;
+		url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+		url = url.substring(url.lastIndexOf("/") + 1, url.length);
+		
+		url = url.replace('index.html', '');
+		url = url.replace('?', '');
+		
+		
+    	var arr = new Array();
+    	parse_str(url, arr);
+   var last_hist = $.mobile.urlHistory.getActive();
+    	console.log(last_hist);
+    	
 
 	var ff = previous_arr['func'];
 	window[ff](previous_arr['f1'], previous_arr['f2'], previous_arr['f3']);
