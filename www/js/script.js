@@ -118,7 +118,7 @@ function set_current(func, f1, f2, f3, f4) {
 		
      	history.pushState(current_arr, hh, hh);
 
-   		$.mobile.urlHistory.add( hh, null, current_arr, hh,'page') ;
+   		//$.mobile.urlHistory.add( hh, null, current_arr, hh,'page') ;
 	}
 	
 	push_it = true;
@@ -132,23 +132,26 @@ function set_current(func, f1, f2, f3, f4) {
 $(function(){	
 
 	$(window).bind('popstate', function(event) {
+		//Catch the back button
 		var url = window.location.href;
 
+		//URL Changed.. now parse it
 		url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
 		url = url.substring(url.lastIndexOf("/") + 1, url.length);
 		
 		url = url.replace('index.html', '');
 		url = url.replace('?', '');
 		
-		
+		//Final Array of the URL vars
     	var arr = new Array();
     	parse_str(url, arr);
     	
-    	console.log(arr);
-    	
+    	//Dont push this to history!
     	push_it = false;
 		var ff = arr['func'];
-		window[ff](arr['f1'], arr['f2'], arr['f3']);
+	
+		//Run the function
+		window[ff](arr['f1'], arr['f2'], arr['f3'], arr['f4']);
 	  
 	});
 
@@ -164,27 +167,6 @@ $(function(){
 
 
 
-
-function go_previous(url) {
-
-		
-		url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
-		url = url.substring(url.lastIndexOf("/") + 1, url.length);
-		
-		url = url.replace('index.html', '');
-		url = url.replace('?', '');
-		
-		
-    	var arr = new Array();
-    	parse_str(url, arr);
-    	
-    	console.log(arr);
-    	
-
-	var ff = previous_arr['func'];
-	window[ff](previous_arr['f1'], previous_arr['f2'], previous_arr['f3']);
-	
-}
 
 
 //setTimeout("location.reload(true);",20000);
@@ -399,7 +381,6 @@ function getStaticContent(){
 function showPage(page,tab, skip){
 	skip = typeof skip !== 'undefined' ? skip : false;
 
-
 	//Set History
 	if(!skip) {
 		set_current('showPage', page, tab);
@@ -431,41 +412,17 @@ function showPage(page,tab, skip){
 		$('.onepage').hide();
 		$('#'+page).show();
 
+		$('.bottombar li').removeClass('popout');
+		
 		if(page=='learn'){
 			$("#top_logo").attr('src', 'img/logos/learn_logo.png');
-			$('.bottombar li').removeClass('popout');
-			$('.bottombar li a').removeClass('blue');
-			$('.bottombar li a div').removeClass('white');
-			$('.bottombar li a div').addClass('gray');
-
-			$('.bottombar li:eq(0)').addClass('popout');
-			$('.bottombar li:eq(0) a').addClass('blue');
-			$('.bottombar li:eq(0) a div').removeClass('gray');			
-			$('.bottombar li:eq(0) a div:eq(0)').addClass('white');
+			$('li.footer_learn').addClass('popout');
 		}else if(page=='ask'){
 			$("#top_logo").attr('src', 'img/logos/ask_logo.png');
-
-			$('.bottombar li').removeClass('popout');
-			$('.bottombar li a').removeClass('blue');
-			$('.bottombar li a div').removeClass('white');
-			$('.bottombar li a div').addClass('gray');
-
-			$('.bottombar li:eq(1)').addClass('popout');
-			$('.bottombar li:eq(1) a').addClass('blue');
-			$('.bottombar li:eq(1) a div').removeClass('gray');			
-			$('.bottombar li:eq(1) a div:eq(0)').addClass('white');
+			$('li.footer_ask').addClass('popout');
 		}else if(page=='myiacquaint'){
 			$("#top_logo").attr('src', 'img/logos/myiaquaint_logo.png');
-
-			$('.bottombar li').removeClass('popout');
-			$('.bottombar li a').removeClass('blue');
-			$('.bottombar li a div').removeClass('white');
-			$('.bottombar li a div').addClass('gray');
-
-			$('.bottombar li:eq(2)').addClass('popout');
-			$('.bottombar li:eq(2) a').addClass('blue');
-			$('.bottombar li:eq(2) a div').removeClass('gray');			
-			$('.bottombar li:eq(2) a div:eq(0)').addClass('white');
+			$('li.footer_myiaq').addClass('popout');
 
 			$.ajax({
 	            type: "GET",
@@ -603,17 +560,7 @@ function showPage(page,tab, skip){
 		}else if(page=='browse'){
 			
 			$("#top_logo").attr('src', 'img/logos/browse_logo.png');
-
-			$('.bottombar li').removeClass('popout');
-			$('.bottombar li a').removeClass('blue');
-			$('.bottombar li a div').removeClass('white');
-			$('.bottombar li a div').addClass('gray');
-
-			$('.bottombar li:eq(3)').addClass('popout');
-			$('.bottombar li:eq(3) a').addClass('blue');
-			$('.bottombar li:eq(3) a div').removeClass('gray');			
-			$('.bottombar li:eq(3) a div:eq(0)').addClass('white');
-
+			$('li.footer_browse').addClass('popout');
 			$.ajax({
 	            type: "GET",
 	            url: baseUrl+'api/browse/index/key/'+userKey,
@@ -623,10 +570,7 @@ function showPage(page,tab, skip){
 					}
 				},
 	            success: function (data) {
-	            	// data.categories	category_name
-	            	// data.types
-	            	
-	            	
+	            
 	            	if(data.status == 0) {
 			        	showPage('login');
 		        	} else{
@@ -654,17 +598,9 @@ function showPage(page,tab, skip){
 	        });
 
 		}else if(page=='watch'){	
-						$("#top_logo").attr('src', 'img/logos/watch_logo.png');
+			$("#top_logo").attr('src', 'img/logos/watch_logo.png');
+			$('li.footer_watch').addClass('popout');
 
-			$('.bottombar li').removeClass('popout');
-			$('.bottombar li a').removeClass('blue');
-			$('.bottombar li a div').removeClass('white');
-			$('.bottombar li a div').addClass('gray');
-
-			$('.bottombar li:eq(4)').addClass('popout');
-			$('.bottombar li:eq(4) a').addClass('blue');
-			$('.bottombar li:eq(4) a div').removeClass('gray');			
-			$('.bottombar li:eq(4) a div:eq(0)').addClass('white');
 
 			$.ajax({
 	            type: "GET",
@@ -770,186 +706,6 @@ function showPage(page,tab, skip){
 
 	            }
 	        });
-		}else if(page=='watch_old-NOTUSED'){
-			$('.bottombar li').removeClass('popout');
-			$('.bottombar li a').removeClass('blue');
-			$('.bottombar li a div').removeClass('white');
-			$('.bottombar li a div').addClass('gray');
-
-			$('.bottombar li:eq(4)').addClass('popout');
-			$('.bottombar li:eq(4) a').addClass('blue');
-			$('.bottombar li:eq(4) a div').removeClass('gray');			
-			$('.bottombar li:eq(4) a div:eq(0)').addClass('white');
-
-			$.ajax({
-	            type: "GET",
-	            url: baseUrl+'api/watch/watch_videos/key/'+userKey,
-	            statusCode: {
-					401: function() {
-						reset_keys();
-					}
-				},
-	            success: function (data) {
-	            	
-	            	if(data.status == 0) {
-			        	showPage('login');
-		        	} else{
-		        	
-		            	// data.video_categories.animated
-		            	// data.video_categories_new
-		            	// data.current_video
-	
-						if(userLangId==2){
-							$('.vidly_wrapper').html(data.animated[0][0]['video_code']);
-							// console.log(data.animated[0][0]);
-						}else{
-							$('.vidly_wrapper').html(data.animated[0][0]['video_code_fr']);
-						}
-	
-	
-	                    var videos='';  
-	                	for(i=0;i<data.animated.length;i++){ 
-	                		videos +='<div class="video_categories">'+
-		                				'<div class="middletext">'+data.animated[i][0].category_name+'</div>'+
-		                				'<div class="wrap">'+
-		                                   	'<div class="slideraround">'+
-		                                        '<div class="scrollbar">'+
-		                                            '<div class="handle">'+
-		                                                '<div class="mousearea"></div>'+
-		                                            '</div>'+
-		                                        '</div>'+
-		                                        '<button class="btn prev dugmeposle"><img src="img/video_left.png"></button>'+
-		                                        '<div class="frame slider">'+
-		                                            '<ul class="clearfix">';
-	
-		                						for(e=0;e<data.animated[i].length;e++){       
-		                						if(userLangId==2) var videoUrl = data.animated[i][e]['video_code']; else var videoUrl = data.animated[i][e]['video_code_fr'];
-			            						videos +='<li>'+
-		                                                    '<div class="videosmall" onClick="showVideo(\''+escapeHtml(videoUrl)+'\')"  ontouch="showVideo(\''+escapeHtml(videoUrl)+'\')">'+
-		                                                        '<div class="videocover">'+data.animated[i][e]['title']+'</div>'+
-		                                                        '<img src="img/videoimage.png" />'+
-		                                                    '</div>'+
-		                                                '</li>';                                            
-		                        				}
-	
-		                        		videos +='</ul>'+
-		                                        '</div>'+
-		                                        '<button class="btn next dugmepre" ><img src="img/video_right.png"></button>'+
-		                                    '</div>'+
-		                                '</div>'+
-	                                '</div>';
-	                	}
-	
-	                    $('#watch .tab1').html(videos);
-	
-	                    var videos='';  
-	                	for(i=0;i<data.video.length;i++){ 
-	                		videos +='<div class="video_categories">'+
-		                				'<div class="middletext">'+data.video[i][0].category_name+'</div>'+
-		                				'<div class="wrap">'+
-		                                   	'<div class="slideraround">'+
-		                                       '<div class="scrollbar">'+
-		                                            '<div class="handle">'+
-		                                                '<div class="mousearea"></div>'+
-		                                            '</div>'+
-		                                        '</div>'+
-		                                        '<button class="btn prev dugmeposle" ><img src="img/video_left.png"></button>'+
-		                                        '<div class="frame slider">'+
-		                                            '<ul class="clearfix">';
-	
-		                						for(e=0;e<data.video[i].length;e++){       
-		                						if(userLangId==2) var videoUrl = data.video[i][e]['video_code']; else var videoUrl = data.video[i][e]['video_code_fr'];
-			            						videos +='<li onClick="showVideo(\''+parse_vidly_id(videoUrl)+'\')">'+
-		                                                    '<div class="videosmall">'+
-		                                                        '<div class="videocover">'+data.video[i][e]['title']+'</div>'+
-		                                                        '<img src="img/videoimage.png" />'+
-		                                                    '</div>'+
-		                                                '</li>';                                            
-		                        				}
-	
-		                        		videos +='</ul>'+
-		                                        '</div>'+
-		                                        '<button class="btn next dugmepre" ><img src="img/video_right.png"></button>'+
-		                                    '</div>'+
-		                                '</div>'
-		                            '</div>';
-	                	}
-	
-	                    $('#watch .tab2').html(videos);
-	
-	
-	                    var videos='';  
-	                	for(i=0;i<data.podcasts.length;i++){ 
-	                		videos +='<div class="video_categories">'+
-		                				'<div class="middletext">'+data.podcasts[i][0].category_name+'</div>'+
-		                				'<div class="wrap">'+
-		                                   	'<div class="slideraround">'+
-		                                        '<div class="scrollbar">'+
-		                                            '<div class="handle">'+
-		                                                '<div class="mousearea"></div>'+
-		                                            '</div>'+
-		                                        '</div>'+
-		                                        '<button class="btn prev dugmeposle" ><img src="img/video_left.png"></button>'+
-		                                        '<div class="frame slider">'+
-		                                            '<ul class="clearfix">';
-	
-		                						for(e=0;e<data.podcasts[i].length;e++){    
-		                						if(userLangId==2) var videoUrl = data.podcasts[i][e]['video_file_en']; else var videoUrl = data.podcasts[i][e]['video_file_fr'];
-			            						videos +='<li onClick="showVideo(\''+videoUrl+'\', \'podcasts\')">'+
-		                                                    '<div class="videosmall">'+
-		                                                        '<div class="videocover">'+data.podcasts[i][e]['title']+'</div>'+
-		                                                        '<img src="img/videoimage.png" />'+
-		                                                    '</div>'+
-		                                                '</li>';                                            
-		                        				}
-	
-		                        		videos +='</ul>'+
-		                                        '</div>'+
-		                                        '<button class="btn next dugmepre" ><img src="img/video_right.png"></button>'+
-		                                    '</div>'+
-		                                '</div>'
-		                            '</div>';
-	                	}
-	
-	                    $('#watch .tab3').html(videos);
-	
-	
-	                    $('.slider').each(function(){
-		                    var $frame = $(this);
-					        var $wrap  = $frame.parent();
-	
-					        // Call Sly on frame
-					        $frame.sly({
-					            horizontal: 1,
-					            itemNav: 'centered',
-					            smart: 1,
-					            activateOn: 'click',
-					            mouseDragging: 1,
-					            touchDragging: 1,
-					            releaseSwing: 1,
-					            startAt: 0,
-					            scrollBar: $wrap.find('.scrollbar'),
-					            scrollBy: 1,
-					            speed: 300,
-					            elasticBounds: 1,
-					            easing: 'easeOutExpo',
-					            dragHandle: 1,
-					            dynamicHandle: 1,
-					            clickBar: 1,
-	
-					            // Buttons
-					            prev: $wrap.find('.prev'),
-					            next: $wrap.find('.next')
-					    
-		
-		
-					        });
-					    });
-
-				    }
-
-	            }
-	        });
 		}
 	}
 
@@ -1023,7 +779,7 @@ function showModule(id,type){
 	
 	
 	//Set History
-	set_current('showModule', id, type);
+	// set_current('showModule', id, type);
 	
 	if(type=='custom'){
 		var url = baseUrl+'api/learn/custom_learning_plan/id/'+id+'/key/'+userKey;
