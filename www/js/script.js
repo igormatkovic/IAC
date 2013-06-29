@@ -30,6 +30,9 @@ if(!navigator.onLine) {
 }
 
 
+var push_it = true;
+
+
 function set_previous() {
 
 
@@ -78,41 +81,49 @@ function set_previous() {
 function set_current(func, f1, f2, f3, f4) {
 	// 
 	
-	set_previous();
 	
-	if(func == 'showPage' && f1 == 'myiacquaint') {
-		$(".back-button").hide();
-	} else {
-		$(".back-button").show();
+	if(push_it) {
+		set_previous();
+		
+		if(func == 'showPage' && f1 == 'myiacquaint') {
+			$(".back-button").hide();
+		} else {
+			$(".back-button").show();
+		}
+		
+		current_arr['func'] = func;
+		
+		if (typeof(f1) !=='undefined') {
+	        current_arr['f1'] = f1;
+	    } else {
+		    delete current_arr['f1'];
+	    }
+	    
+		if (typeof(f2) !=='undefined') {
+	        current_arr['f2'] = f2;
+	    } else {
+		    delete current_arr['f2'];
+	    }
+	    
+		if (typeof(f3) !=='undefined') {
+	        current_arr['f3'] = f3;
+	    } else {
+		    delete current_arr['f3'];
+	    }
+	    
+	    current_arr['page'] = currentPage;
+	    current_arr['tab'] = currentTab;
+	
+		var hh = 'index.html?'+http_build_query(current_arr);
+		
+     	history.pushState(current_arr, hh, hh);
+
+   		$.mobile.urlHistory.add( hh, null, current_arr, hh,'page') ;
+		console.log( $.mobile.urlHistory.stack )
 	}
 	
-	current_arr['func'] = func;
-	
-	if (typeof(f1) !=='undefined') {
-        current_arr['f1'] = f1;
-    } else {
-	    delete current_arr['f1'];
-    }
-    
-	if (typeof(f2) !=='undefined') {
-        current_arr['f2'] = f2;
-    } else {
-	    delete current_arr['f2'];
-    }
-    
-	if (typeof(f3) !=='undefined') {
-        current_arr['f3'] = f3;
-    } else {
-	    delete current_arr['f3'];
-    }
-    
-    current_arr['page'] = currentPage;
-    current_arr['tab'] = currentTab;
-
-	var hh = 'index.html?'+http_build_query(current_arr);
-	
-    history.pushState(null, hh, hh);
-    
+	push_it = true;
+    //$.mobile.urlHisttory.addNew(hh);
 
 	
 
@@ -121,37 +132,9 @@ function set_current(func, f1, f2, f3, f4) {
 
 $(function(){	
 
-
 	$(window).bind('popstate', function(event) {
-	  //  console.log(event);
-	});
+		var url = window.location.href;
 
-	$("#go_back").click(function(){
-		history.back();
-
-    	go_previous();
-	});
-  
- 
-  
-});
-
-
-
-
-function go_previous() {
-
-		
-		/*
-	var url = window.location.url;
-		console.log(url);
-		url = url.replace('index.html', '');
-		url = url.replace('?', '');
-		url = url.replace('#', '');
-		*/
-		
-		
-		var url = document.location.href;
 		url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
 		url = url.substring(url.lastIndexOf("/") + 1, url.length);
 		
@@ -161,8 +144,42 @@ function go_previous() {
 		
     	var arr = new Array();
     	parse_str(url, arr);
-   var last_hist = $.mobile.urlHistory.getActive();
-    	console.log(last_hist);
+    	
+    	console.log(arr);
+    	
+    	push_it = false;
+		var ff = previous_arr['func'];
+		window[ff](previous_arr['f1'], previous_arr['f2'], previous_arr['f3']);
+	  
+	});
+
+	$("#go_back").click(function(){
+	//	history.back();
+	//console.log($.mobile.urlHisttory.getPrev());
+    //	go_previous();
+	});
+  
+ 
+  
+});
+
+
+
+
+function go_previous(url) {
+
+		
+		url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+		url = url.substring(url.lastIndexOf("/") + 1, url.length);
+		
+		url = url.replace('index.html', '');
+		url = url.replace('?', '');
+		
+		
+    	var arr = new Array();
+    	parse_str(url, arr);
+    	
+    	console.log(arr);
     	
 
 	var ff = previous_arr['func'];
