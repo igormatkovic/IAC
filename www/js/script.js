@@ -119,7 +119,6 @@ function set_current(func, f1, f2, f3, f4) {
      	history.pushState(current_arr, hh, hh);
 
    		$.mobile.urlHistory.add( hh, null, current_arr, hh,'page') ;
-		console.log( $.mobile.urlHistory.stack )
 	}
 	
 	push_it = true;
@@ -148,8 +147,8 @@ $(function(){
     	console.log(arr);
     	
     	push_it = false;
-		var ff = previous_arr['func'];
-		window[ff](previous_arr['f1'], previous_arr['f2'], previous_arr['f3']);
+		var ff = arr['func'];
+		window[ff](arr['f1'], arr['f2'], arr['f3']);
 	  
 	});
 
