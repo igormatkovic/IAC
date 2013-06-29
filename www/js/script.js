@@ -150,7 +150,23 @@ $(function(){
     	push_it = false;
 		var ff = arr['func'];
 		
+		
+		
+		if(ff == 'browse' && arr['tab'] == 'tab1') {
+			set_tab('tab1', 'browse');
+		}
+		
+		if(ff == 'tools' && arr['f3'] == 'topic') {
+			set_tab('tab3', 'browse');
+		}
+		
+		if(ff == 'tools' && arr['f3'] == 'type') {
+			set_tab('tab4', 'browse');
+		}
 	
+	
+		        	
+		        	
 		//Run the function
 		window[ff](arr['f1'], arr['f2'], arr['f3'], arr['f4']);
 		
@@ -188,6 +204,15 @@ $(function(){
 });
 
 
+
+
+function set_tab(tab, main) {
+		$('#'+main+' .tab').hide();
+	    $('#'+main+' .tabs a').removeClass('tabactive');
+	    $('#'+main+' .'+tab+' a').addClass('tabactive');
+	
+	    $('#'+main+' .'+tab).show();
+}
 
 
 
