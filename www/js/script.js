@@ -201,7 +201,7 @@ $(function(){
     //	go_previous();
 	});
   
-	loading(true);
+	
   
 });
 
@@ -463,6 +463,8 @@ function showPage(page,tab, skip){
 		if(page=='login'){
 			$('#wrap').hide();
 			$('#footer').hide();
+			
+			loading(false);
 		}else{
 			$('#wrap').show();
 			$('#footer').show();
