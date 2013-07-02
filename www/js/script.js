@@ -504,9 +504,12 @@ function showPage(page,tab, skip){
 		            	//// console.log(data);
 		            	var progressPercent = 100 * data.points / 1000;
 		            	
+		            	var points_percent = 100 - Math.round(data.points_until_next_level.replace(/\D/g, '' ) / data.points * 100);
 		            	
-		            	var add_width = $("#progressbar").width();
-		            	var percent = add_width*((100-progressPercent)/100);
+		            	
+		            	//var percent = total_points_needed /
+		            	
+		            	var percent = ($( "#progressbar").width() / 100) * points_percent;
 
 		            	
 		            	$( "#progressbar span").width(0)
@@ -823,17 +826,24 @@ function showVideo(video, type){
 	if(type=='podcasts'){
 		$('#watch .vidly_wrapper').html('');
 
-		$('#watch .vidly_wrapper').hide();
-		$('#watch .jplayer_wrapper').show();
+	//	$('#watch .vidly_wrapper').show();
+	//	$('#watch .jplayer_wrapper').show();
 
 		//$('#watch .vidly_wrapper').html('<audio controls><source src="'+baseUrl+'uploads/tools/files/'+video+'">Your browser does not support the audio element.</audio>');
 	 	
-	 	
+ 	
 	 	var	ret = '<div class="vidly_box podcast">';
 		ret += '<a href="'+baseUrl+'uploads/tools/files/'+video+'">';
 		ret += '<img src="img/empty.gif" class="vidly_video_play"/>';
-		ret += '<img src="img/podcast.png" class="vidly_video"/>';
+		ret += '<img src="img/podcast_img.jpg" class="vidly_video"/>';
 		ret += '</a></div>';
+
+/*	
+	 	var	ret = '<div class="vidly_box podcast">';
+	 	    ret += '<embed src="img/podcast.png" href="songs/01-riding-with-the-king.mp3" artworkdata="img/podcast.png" type="audio/x-mp3"></embed>';
+	 	    ret += '</div>';
+	 	    
+	 	    */
 		$('#watch .vidly_wrapper').html(ret);
 		window.scrollTo(0, 0);
 	}else{
