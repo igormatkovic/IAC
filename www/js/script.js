@@ -894,13 +894,12 @@ function showModule(id,type){
 	        } else{
 			        	
 	        	last_key = data.tools.length-1;
-	        	active_key = data.current_key;
+	        	active_key = 0;
 	
 	        	var videoNum = 1;
 	        	var videoFiles = [];
 	
 	        	var tools='';
-	
 	
 	        	for(i=0;i<data.tools.length;i++){
 	        		tools += '<div class="resource '+i+'" style="display:none;">'+
@@ -920,8 +919,8 @@ function showModule(id,type){
 		                    	videoNum++;
 		                    	videoFiles.push(data.tools[i]['video_file_'+userLang]);
 	
-		                    	tools += '<iframe width="310px" height="300px" src="'+baseUrl+'en/learn/jplayer_api/'+data.tools[i]['video_file_'+userLang]+'"></iframe>';
-	
+		                    	//tools += '<iframe width="310px" height="300px" src="'+baseUrl+'en/learn/jplayer_api/'+data.tools[i]['video_file_'+userLang]+'"></iframe>';
+								tools += podcast(data.tools[i]['video_file_'+userLang]);
 	
 	                    	}else{
 	                    		if(userLangId==2){
@@ -1256,7 +1255,8 @@ function toolDescription(tool){
     }else if(tool['type']=='video'){
     	if(tool['video_category']=='podcasts'){    	
     		
-            desc += '<iframe width="100%" height="300px" src="'+baseUrl+'en/learn/jplayer_api/'+tool['video_file_'+userLang]+'"></iframe>';
+           // desc += '<iframe width="100%" height="300px" src="'+baseUrl+'en/learn/jplayer_api/'+tool['video_file_'+userLang]+'"></iframe>';
+            desc += podcast(tool['video_file_'+userLang]);
                     
     	}else{
     		if(userLangId==2){
@@ -1593,6 +1593,15 @@ function vidly_img(frame) {
 	return 'http://cf.cdn.vid.ly/'+id+'/poster.jpg';
 }
 
+
+function podcast(file) {
+	var	ret = '<div class="vidly_box podcast">';
+									ret += '<a href="'+baseUrl+'uploads/tools/files/'+file+'">';
+									ret += '<img src="img/empty.gif" class="vidly_video_play"/>';
+									ret += '<img src="img/podcast_img.jpg" class="vidly_video"/>';
+									ret += '</a></div>';
+	return ret;
+}
 
 
 function reset_keys() {
