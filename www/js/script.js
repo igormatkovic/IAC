@@ -503,9 +503,17 @@ function showPage(page,tab, skip){
 		        	} else{
 		            	//// console.log(data);
 		            	var progressPercent = 100 * data.points / 1000;
-		            	$( "#progressbar" ).progressbar({
-					        value: progressPercent
-					    });
+		            	
+		            	
+		            	var add_width = $("#progressbar").width();
+		            	var percent = add_width*((100-progressPercent)/100);
+
+		            	
+		            	$( "#progressbar span").width(0)
+		            						.animate({
+		            					       	width: percent
+		            					    }, 1200);
+			
 	
 		            	$('.num_of_points').html(data.points);
 		            	$('.user_name').html(data.name);

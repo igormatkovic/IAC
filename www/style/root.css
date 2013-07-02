@@ -1848,6 +1848,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    overflow: hidden;
 	}
 	
+	.progressbar span{height:11px; display: block; background-color:#07B0EE;width: 1px;}
 	.resource_title{
 	    color: #07b0ee;
 	    font-size: 16px;
