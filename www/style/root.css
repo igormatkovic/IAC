@@ -55,7 +55,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
     body { opacity: 1; }
 
 	body {
-	    font-family: Arial, Helvetica, sans-serif;
+	    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	    height: 100%;
 	    font-size: 12px !important;
 	    margin-bottom: 0;
@@ -418,7 +418,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    width: 62%;
 	    height: 52px;
 	    border-radius: 8px;
-	    font: bold 18px Arial, Helvetica, sans-serif;
+	    font: bold 18px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	    color: #ffffff;
 	    border: 1px solid #0689af;
 	    /*padding-left: 10px;*/
@@ -449,7 +449,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	
 	/* Simple Input */
 	.simpleinput {
-	    font: 16px Arial, Helvetica, sans-serif;
+	    font: 16px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	    color: #333;
 	    border: 1px solid #c0c5cd;
 	    border-left: 1px solid #c0c5cd;
@@ -611,7 +611,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    width: 76px;
 	    height: 24px;
 	    background: url(../img/pagebuttons.png) no-repeat 0 0;
-	    font: bold 13px Arial, Helvetica, sans-serif;
+	    font: bold 13px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	    color: #000;
 	    text-align: center;
 	    float: left;
@@ -634,7 +634,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    width: 76px;
 	    height: 24px;
 	    background: url(../img/pagebuttons.png) no-repeat -79px 0;
-	    font: bold 13px Arial, Helvetica, sans-serif;
+	    font: bold 13px 'Helvetica Neue',  Arial, Helvetica, sans-serif;
 	    color: #000;
 	    text-align: center;
 	    float: right;
@@ -661,7 +661,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    height: 31px;
 	    cursor: pointer;
 	    display: block;
-	    font: bold 14px Arial, Helvetica, sans-serif;
+	    font: bold 14px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	    color: #666;
 	    background: url(../img/commentbars.png) no-repeat 0 0;
 	    padding: 14px 0 0 40px;
@@ -709,7 +709,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    height: 31px;
 	    cursor: pointer;
 	    display: block;
-	    font: bold 14px Arial, Helvetica, sans-serif;
+	    font: bold 14px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	    color: #666;
 	    background: url(../img/commentbars.png) no-repeat 0 -138px;
 	    padding: 14px 0 0 40px;
@@ -1218,7 +1218,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    background: #757575;
 	    border: 1px solid #775F15;
 	    color: #ffffff;
-	    font: bold 18px Arial, Helvetica, sans-serif;
+	    font: bold 18px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	    border-radius: 3px;
 	    line-height: 36px;
 	    padding: 8px 10px;
@@ -1269,7 +1269,7 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	    /*text-shadow:1px 1px 0 #191919;*/
 	    padding-top: 13px;
 	    border-right: 1px solid #d7d7d7;
-	    font: bold 12px Arial, Helvetica, sans-serif;
+	    font: bold 12px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	    border-bottom: 3px solid transparent;
 	    -webkit-box-shadow: inset 0px 0px 20px 12px #efefef;
 	
@@ -1853,16 +1853,17 @@ body:before {/* thanks to Maleika (Kohoutec)*/
 	.progressbar span{height:11px; display: block; background-color:#07B0EE;width: 1px;}
 	.resource_title{
 	    color: #07b0ee;
-	    font-size: 16px;
+	    font-size: 17px;
 	    padding: 8px 0;
 	    font-weight:bold;
 	}
 	
 	.resource_content{
 	    text-align: justify;
-	    padding-left: 3px;
-	    padding-right: 3px;
-	    font-size: 13px;
+	    padding: 1px 5px;
+	    font-size: 15px !important;
+	    line-height: 15px;
+	    color:#3d3d3d;
 	}
 	
 	.resource_content p{
